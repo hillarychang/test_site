@@ -1,1 +1,116 @@
-
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Cash Score: Alternative Credit Scoring</title>
+        <meta name="description"
+            content="2024 UC San Diego Data Science Capstone Project, written by Section B18 Group X.">
+        <meta name="author" content="Jevan Chahal, Hillary Chang, Kurumi Kaneko, Kevin Wong">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Tilt+Warp&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
+        <link type="text/css" href="styles.css" rel="stylesheet">
+        <link href="media/ucsd-icon.png" rel="icon">
+    </head>
+    <body>
+        <header>
+            <h1>Cash Score: Alternative Credit Scoring</h1>
+            <h2>Using Banking Transaction Data for Fairer Credit Assessment</h2>
+            <div class="authors">
+                <p>By:
+                    <a href="mailto:j2chahal@ucsd.edu">Jevan Chahal</a>,
+                    <a href="mailto:hic001@ucsd.edu">Hillary Chang</a>,
+                    <a href="mailto:kskaneko@ucsd.edu">Kurumi Kaneko</a>, and
+                    <a href="mailto:kew024@ucsd.edu">Kevin Wong</a>.
+                </p>
+                <p>Mentors:
+                    <a href="mailto:brian.duke@prismdata.com">Brian Duke (Prism Data, Inc.)</a> and
+                    <a href="mailto:kyle.nero@prismdata.com">Kyle Nero (Prism Data, Inc.)</a>.
+                </p>
+            </div>
+            <div class="links">
+                <a href="https://github.com/hillarychang/dsc180b-capstone-q2"
+                    class="resource-links" target="_blank" rel="noopener noreferrer">View Code</a>
+                <a href="document/poster.pdf" class="resource-links" target="_blank" rel="noopener noreferrer">View
+                    Poster</a>
+                <a href="document/report.pdf" class="resource-links" target="_blank" rel="noopener noreferrer">View
+                    Report</a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#abstract">Abstract</a></li>
+                    <li><a href="#introduction">Introduction</a></li>
+                    <li><a href="#methods">Methods</a></li>
+                    <li><a href="#results">Results</a></li>
+                    <li><a href="#model-output">Model Output</a></li>
+                    <li><a href="#discussion">Discussion</a></li>
+                    <li><a href="#contribution">Contributions</a></li>
+                    <li><a href="#contact">Contacts</a></li>
+                </ul>
+            </nav>
+        </header>
+        <hr />
+        <main>
+            <section id="abstract">
+                <h3>Abstract</h3>
+                <p>Traditional credit scoring models rely heavily on credit history, limiting access to credit for those without established credit records. Our project introduces an alternative scoring mechanism—"Cash Score"—that leverages banking transaction data to assess financial behavior and creditworthiness. By using machine learning models on transactional data, we aim to create a more inclusive and fair method for evaluating consumer credit risk.</p>
+            </section>
+            <section id="introduction">
+                <h3>Introduction</h3>
+                <p>Access to credit is a crucial factor in financial stability, yet millions are excluded from traditional credit systems. Our project proposes an alternative credit scoring method based on transaction data, which provides a more comprehensive view of an individual’s financial habits. This approach considers spending behaviors, income consistency, overdrafts, and other transactional indicators.</p>
+            </section>
+            <section id="methods">
+                <h3>Methods</h3>
+                <p>Our methodology consists of feature engineering from transaction data, model training using various machine learning algorithms (XGBoost, Logistic Regression, etc.), and performance evaluation through precision, recall, and ROC-AUC scores.</p>
+            </section>
+            <section id="results">
+                <h3>Results</h3>
+                <p>Our models achieved accuracy above 80%, with XGBoost providing the highest performance in predicting credit risk. The most influential features included overdraft frequency, balance volatility, and transaction categories related to high-risk spending.</p>
+            </section>
+            <section id="model-output">
+                <h3>Model Output</h3>
+                <p>The model assigns a probability of default score to each user, with key contributing factors highlighted through explainability techniques.</p>
+            </section>
+            <section id="discussion">
+                <h3>Discussion</h3>
+                <p>Our model demonstrates the potential for alternative credit scoring methods but faces challenges such as data bias and class imbalance. Future work will focus on refining the fairness and interpretability of the Cash Score.</p>
+            </section>
+            <section id="contribution">
+                <h3>Contributions</h3>
+                <p>Our project aims to create a fairer credit assessment system while maintaining accuracy and transparency. The Cash Score model reduces reliance on traditional credit history and promotes financial inclusivity.</p>
+            </section>
+            <a href="#" aria-label="Go to top of the page" id="top-btn">Go To Top &uarr;</a>
+        </main>
+        <footer>
+            <div class="footer-container">
+                <h3 id="contact">Contacts: </h3>
+                <div class="contact">
+                    <div class="contact-links">
+                        <p>Jevan Chahal</p>
+                        <a href="mailto:j2chahal@ucsd.edu"><i>j2chahal@ucsd.edu</i></a>
+                    </div>
+                    <div class="contact-links">
+                        <p>Hillary Chang</p>
+                        <a href="mailto:hic001@ucsd.edu"><i>hic001@ucsd.edu</i></a>
+                    </div>
+                    <div class="contact-links">
+                        <p>Kurumi Kaneko</p>
+                        <a href="mailto:kskaneko@ucsd.edu"><i>kskaneko@ucsd.edu</i></a>
+                    </div>
+                    <div class="contact-links">
+                        <p>Kevin Wong</p>
+                        <a href="mailto:kew024@ucsd.edu"><i>kew024@ucsd.edu</i></a>
+                    </div>
+                </div>
+                <p>This page was generated by <a
+                        href="https://pages.github.com/" target="_blank">GitHub
+                        Pages</a></p>
+                <p>&copy; 2024 Jevan, Hillary, Kurumi, and Kevin. All
+                    rights reserved.</p>
+            </div>
+        </footer>
+    </body>
+</html>
