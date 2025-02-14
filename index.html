@@ -63,37 +63,6 @@
                 <h3>Introduction</h3>
                 <p>Determining a customer’s creditworthiness is essential for banks, influencing decisions about loans, credit cards, and other financial services. While traditional credit scores are widely used, they often fail to capture the full financial picture, especially for individuals with little to no credit history. Our project aims to bridge this gap by leveraging transaction data to assess financial behavior rather than relying solely on past credit activity. By analyzing spending habits, income consistency, and transaction types, we seek to create a scoring model that provides a more accurate and equitable reflection of financial reliability. As part of our project, we have implemented a data pipeline to support this model, including a categorization system that classifies transaction memos from vendors with high accuracy and low latency—ensuring that entries like "Amazon.com" are correctly categorized under "General Merchandise." This categorization plays a key role in our broader goal of developing the Cash Score, a numerical value ranging from 1 to 999 that predicts a consumer’s likelihood of defaulting on debt or credit. By equipping financial institutions with this tool, we aim to enhance risk assessment while ensuring that credit access is extended to those with strong banking histories, making lending practices more inclusive and effective.</p>
             </section>
-
-            <section id="methods">
-                <h3>Methods</h3>
-                <p>Our methodology consists of feature engineering from transaction data, model training using various machine learning algorithms, and performance evaluation based on key metrics. The figure below shows our overall methodology:</p>
-            
-                <figure>
-                    <img src="figure/methodology.png" alt="Overall Methodology Diagram">
-                    <figcaption>Figure: Overview of our methodology.</figcaption>
-                </figure>
-            
-                <!-- Categorizing Transactions based on Memos -->
-                <section id="categorizing-transactions">
-                    <h4>Categorizing Transactions Based on Memos</h4>
-            
-                    <!-- Feature Creation and Selection -->
-                    <section id="feature-creation">
-                        <h5>Feature Creation and Selection</h5>
-            
-                        <details>
-                            <summary><h6>Cleaning the Memo Fields</h6></summary>
-                            <p>To prepare the memo field for analysis, we first applied a series of cleaning steps...</p>
-                        </details>
-            
-                        <details>
-                            <summary><h6>Token Augmentation</h6></summary>
-                            <p>We enhanced the <code>memo</code> field by adding specific tokens...</p>
-                        </details>
-            
-                    </section>
-                </section>
-            </section>
             
             <section id="methods">
                 <h3>Methods</h3>
@@ -105,7 +74,7 @@
                 </figure>
             </section>
 
-<!--             <p>Our project is structured around two primary objectives: categorizing transactions based on memos and developing the <strong>Cash Score</strong>, a predictive model for assessing a consumer’s likelihood of defaulting on credit.</p> -->
+<!--        <p>Our project is structured around two primary objectives: categorizing transactions based on memos and developing the <strong>Cash Score</strong>, a predictive model for assessing a consumer’s likelihood of defaulting on credit.</p> -->
 
             <!-- Categorizing Transactions based on Memos -->
             <section id="categorizing-transactions">
@@ -113,45 +82,12 @@
 
                 <!-- Feature Creation and Selection -->
                 <section id="feature-creation">
-                    <h4>Feature Creation and Selection</h4>
-                    <details>
-                        <h4>Cleaning the Memo Fields</h4>
-                    
-                        <p>To prepare the memo field for analysis, we first applied a series of cleaning steps to standardize the text. We transformed all text to lowercase for uniformity, removed any extraneous punctuation and symbols, and stripped out dates, state abbreviations, and recurring text that didn’t contribute to transaction categorization (e.g., “POS withdrawal”). Placeholder values such as multiple X’s were also removed.</p>
-                    
-                        <p>To prepare the dataset for modeling, we began by reviewing a sample of unique transaction memos from each category. This step provided insights into common patterns and inconsistencies, helping us determine the scope and focus of our cleaning tasks.</p>
-                    
-                        <div class="image-container">
-                            <figure>
-                                <img src="figure/nonclean_df.png" alt="Uncleaned Memo Dataframe">
-                                <figcaption>Figure: This table shows the memo dataframe before cleaning. Variations in text format, inconsistent capitalization, and extraneous characters can be observed, which motivated the cleaning process to improve uniformity in transaction descriptions.</figcaption>
-                            </figure>
-                    
-                            <figure>
-                                <img src="figure/clean_df.png" alt="Cleaned Memo Dataframe">
-                                <figcaption>Figure: This table represents the cleaned memo dataframe, where we applied text preprocessing to ensure consistency across transaction descriptions. By converting to lowercase, removing punctuation, and standardizing certain tokens, we prepared the data for more accurate feature extraction and analysis.</figcaption>
-                            </figure>
-                        </div>
-                    
-                        <p>We then applied several transformations to standardize the data and improve its interpretability:</p>
-                    
-                        <ul>
-                            <li><strong>Date Removal:</strong> We used regular expressions (RegEx) to locate and remove dates across entries in the memo column, as they did not contribute to the model's predictive goals and added unnecessary complexity. Placeholder patterns such as "XXXX" were also removed.</li>
-                    
-                            <li><strong>Pattern Recognition:</strong> Specific patterns and keywords were identified as indicators of certain transaction categories. For example, "TST" was reliably associated with "Food and Beverages," while "APPLE.COM/BILL" was linked to "General Merchandise." These patterns were flagged to automate future classifications and reduce manual intervention.</li>
-                    
-                            <li><strong>Selective Character Retention:</strong> To preserve potentially valuable information, certain characters such as dots ('.') were retained to keep URLs or email addresses intact within the memo field, which could provide clues to transaction categories.</li>
-                    
-                            <li><strong>Transaction Labels:</strong> We identified recurring phrases such as "POS Withdrawal," location-specific markers (e.g., “CA 10/27” for state and date), and labels indicating recurring payments. These were removed as they did not contribute to the model’s predictive goals and added unnecessary complexity.</li>
-                    
-                            <li><strong>Text Normalization:</strong> All text was converted to lowercase to reduce variability due to case differences.</li>
-                        </ul>
-                    
-                    </details>
-    
+                <details>
+                    <summary><strong>Feature Creation and Selection</strong></summary>
+            
                     <!-- Token Augmentation -->
                     <details>
-                        <summary><h4>Token Augmentation</h4></summary>
+                        <summary>Token Augmentation</summary>
                     
                         <p>
                             To prepare the transaction data for further analysis and modeling, we enhanced the <code>memo</code> field by adding specific tokens based on transaction characteristics. 
@@ -172,34 +108,70 @@
                                 <strong>Whole Dollar Amount Identification:</strong> We added a token <code>&lt;W_D&gt;</code> to the <code>memo</code> field for transactions with whole dollar amounts.
                                 This token helps identify transactions that might involve cash withdrawals or ATM transactions, as these are typically in round amounts (e.g., $20, $50).
                             </li>
-                    
+            
                             <li>
                                 <strong>Day of Transaction:</strong> For each transaction's posting date, we generated a day token in the format <code>&lt;D_day&gt;</code>, where <code>day</code> represents the specific 
                                 day of the month. This token helps analyze patterns such as end-of-month or beginning-of-month spending habits.
                             </li>
-                    
+            
                             <li>
                                 <strong>Month of Transaction:</strong> Similarly, we generated a month token in the format <code>&lt;M_month&gt;</code> (where <code>month</code> is the numerical month) 
                                 to capture seasonal or monthly spending trends.
                             </li>
-                    
+            
                             <li>
                                 <strong>Token Augmentation Process:</strong> For each row in the dataset, these tokens were concatenated to the <code>memo</code> field using the following transformation:
                                 <pre>
-                    memo = memo + whole_dollar_amount_token + day_token + month_token
+            memo = memo + whole_dollar_amount_token + day_token + month_token
                                 </pre>
                             </li>
                         </ul>
-                    
+            
                         <div class="image-container">
                             <figure>
                                 <img src="figure/post_token.jpeg" alt="Post-token augmentation transaction data">
                                 <figcaption>Figure: Transaction data after token augmentation. The <code>memo</code> field now includes additional tokens: <code>&lt;D_day&gt;</code> for the day of the transaction, <code>&lt;M_month&gt;</code> for the month, and <code>&lt;W_D&gt;</code> for whole dollar amounts.</figcaption>
                             </figure>
                         </div>
-                    
                     </details>
-                </section>
+            
+                    <!-- Cleaning the Memo Fields -->
+                    <details>
+                        <summary>Cleaning the Memo Fields</summary>
+                    
+                        <p>To prepare the memo field for analysis, we first applied a series of cleaning steps to standardize the text. We transformed all text to lowercase for uniformity, removed any extraneous punctuation and symbols, and stripped out dates, state abbreviations, and recurring text that didn’t contribute to transaction categorization (e.g., “POS withdrawal”). Placeholder values such as multiple X’s were also removed.</p>
+                    
+                        <p>To prepare the dataset for modeling, we began by reviewing a sample of unique transaction memos from each category. This step provided insights into common patterns and inconsistencies, helping us determine the scope and focus of our cleaning tasks.</p>
+                    
+                        <div class="image-container">
+                            <figure>
+                                <img src="figure/nonclean_df.png" alt="Uncleaned Memo Dataframe">
+                                <figcaption>Figure: This table shows the memo dataframe before cleaning. Variations in text format, inconsistent capitalization, and extraneous characters can be observed, which motivated the cleaning process to improve uniformity in transaction descriptions.</figcaption>
+                            </figure>
+            
+                            <figure>
+                                <img src="figure/clean_df.png" alt="Cleaned Memo Dataframe">
+                                <figcaption>Figure: This table represents the cleaned memo dataframe, where we applied text preprocessing to ensure consistency across transaction descriptions. By converting to lowercase, removing punctuation, and standardizing certain tokens, we prepared the data for more accurate feature extraction and analysis.</figcaption>
+                            </figure>
+                        </div>
+                    
+                        <p>We then applied several transformations to standardize the data and improve its interpretability:</p>
+                    
+                        <ul>
+                            <li><strong>Date Removal:</strong> We used regular expressions (RegEx) to locate and remove dates across entries in the memo column, as they did not contribute to the model's predictive goals and added unnecessary complexity. Placeholder patterns such as "XXXX" were also removed.</li>
+            
+                            <li><strong>Pattern Recognition:</strong> Specific patterns and keywords were identified as indicators of certain transaction categories. For example, "TST" was reliably associated with "Food and Beverages," while "APPLE.COM/BILL" was linked to "General Merchandise." These patterns were flagged to automate future classifications and reduce manual intervention.</li>
+            
+                            <li><strong>Selective Character Retention:</strong> To preserve potentially valuable information, certain characters such as dots ('.') were retained to keep URLs or email addresses intact within the memo field, which could provide clues to transaction categories.</li>
+            
+                            <li><strong>Transaction Labels:</strong> We identified recurring phrases such as "POS Withdrawal," location-specific markers (e.g., “CA 10/27” for state and date), and labels indicating recurring payments. These were removed as they did not contribute to the model’s predictive goals and added unnecessary complexity.</li>
+            
+                            <li><strong>Text Normalization:</strong> All text was converted to lowercase to reduce variability due to case differences.</li>
+                        </ul>
+                    </details>
+                </details>
+            </section>
+
 
                 <section id="models-results">
                     <h4>Models and Results</h4>
