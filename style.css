@@ -219,9 +219,36 @@ figcaption {
     font-style: italic; /* Optional: To make it look like a typical caption */
 }
 
-.math-equation {
-    font-family: "Cambria Math", "Times New Roman", serif;
-    font-size: 1.2em;
-    font-style: italic;
+/* Increase font size for Feature Creation and Selection */
+.feature-title {
+    font-size: 1.8rem; 
+    font-weight: bold; 
+    margin-top: 1.5rem;
 }
+
+/* Increase font size for Token Augmentation (inside details/summary) */
+.expandable-section summary {
+    font-size: 1.5rem; 
+    font-weight: bold;
+    cursor: pointer; 
+    margin-bottom: 0.5rem;
+}
+
+/* Increase font size for process explanation */
+.process-intro {
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-top: 1rem;
+}
+
+/* Styling for the math equation display */
+.math-equation {
+    font-family: monospace;
+    font-size: 1.2rem;
+    background-color: #f8f9fa;
+    padding: 0.5rem;
+    border-radius: 5px;
+    display: inline-block;
+}
+
 
