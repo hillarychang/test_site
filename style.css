@@ -219,3 +219,9 @@ figcaption {
     font-style: italic; /* Optional: To make it look like a typical caption */
 }
 
+.math-equation {
+    font-family: "Cambria Math", "Times New Roman", serif;
+    font-size: 1.2em;
+    font-style: italic;
+}
+
