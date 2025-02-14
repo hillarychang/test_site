@@ -84,7 +84,7 @@
                 <section id="feature-creation">
                     <h4>Feature Creation and Selection</h4>
                     <details>
-                        <summary><h3>Cleaning the Memo Fields</h3></summary>
+                        <summary><h4>Cleaning the Memo Fields</h4></summary>
                     
                         <p>To prepare the memo field for analysis, we first applied a series of cleaning steps to standardize the text. We transformed all text to lowercase for uniformity, removed any extraneous punctuation and symbols, and stripped out dates, state abbreviations, and recurring text that didn’t contribute to transaction categorization (e.g., “POS withdrawal”). Placeholder values such as multiple X’s were also removed.</p>
                     
@@ -120,7 +120,7 @@
     
                     <!-- Token Augmentation -->
                     <details>
-                        <summary><h3>Token Augmentation</h3></summary>
+                        <summary><h4>Token Augmentation</h4></summary>
                     
                         <p>
                             To prepare the transaction data for further analysis and modeling, we enhanced the <code>memo</code> field by adding specific tokens based on transaction characteristics. 
@@ -175,7 +175,7 @@
                     
                     <!-- Logistic Regression Section -->
                     <details>
-                        <summary><h3>Model Implementation & Results: Logistic Regression with TF-IDF Vectorization</h3></summary>
+                        <summary><h4>Model Implementation & Results: Logistic Regression with TF-IDF Vectorization</h4></summary>
                     
                         <p>
                             To classify transaction categories based on the <code>memo</code> text field, we first used a Logistic Regression model with TF-IDF vectorization. 
