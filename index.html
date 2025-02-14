@@ -177,13 +177,12 @@
 
                     <!-- Logistic Regression Section -->
                     <details>
-                        <summary><h4>Logistic Regression with TF-IDF Vectorization</h4></summary>
-                    
+                        <summary><strong>Logistic Regression with TF-IDF Vectorization</strong></summary>
                         <p>
                             To classify transaction categories based on the <code>memo</code> text field, we first used a Logistic Regression model with TF-IDF vectorization. 
                             This method converts raw text data into numerical features, allowing the model to utilize term frequency patterns for classification.
                         </p>
-                    
+                
                         <h4>TF-IDF Vectorization</h4>
                         <p>We employed a TF-IDF vectorizer to transform text data into a matrix of features with the following parameters:</p>
                         <ul>
@@ -191,7 +190,7 @@
                             <li><strong>max_df=0.95:</strong> Ignored terms appearing in more than 95% of documents.</li>
                             <li><strong>min_df=5:</strong> Ignored terms appearing in fewer than 5 documents.</li>
                         </ul>
-                    
+                
                         <h4>Logistic Regression Model</h4>
                         <p>For classification, we configured the Logistic Regression model with:</p>
                         <ul>
@@ -199,52 +198,24 @@
                             <li><strong>max_iter=200:</strong> Ensured convergence.</li>
                             <li><strong>n_jobs=-1:</strong> Utilized all available CPU cores for parallel training.</li>
                         </ul>
-                    
+                
                         <p><strong>Accuracy:</strong> The model achieved 96.15% accuracy on the test set.</p>
-                    
-                        <h4>ROC-AUC Scores</h4>
-                        <p>The table below displays the ROC-AUC scores for various transaction categories, indicating how well the model distinguishes between each class.</p>
-                        <table>
-                            <tr><th>Category</th><th>ROC-AUC Score</th></tr>
-                            <tr><td>GROCERIES</td><td>0.9981</td></tr>
-                            <tr><td>FOOD & BEVERAGES</td><td>0.9956</td></tr>
-                            <tr><td>MORTGAGE</td><td>1.0000</td></tr>
-                        </table>
-                    
-                        <h4>Per-Category Accuracy</h4>
-                        <p>The following table shows the accuracy for each transaction category:</p>
-                        <table>
-                            <tr><th>Category</th><th>Accuracy</th></tr>
-                            <tr><td>GENERAL MERCHANDISE</td><td>0.8991</td></tr>
-                            <tr><td>OVERDRAFT</td><td>0.9998</td></tr>
-                            <tr><td>EDUCATION</td><td>0.9967</td></tr>
-                            <tr><td>TRAVEL</td><td>0.9838</td></tr>
-                            <tr><td>RENT</td><td>0.9984</td></tr>
-                            <tr><td>MORTGAGE</td><td>0.9993</td></tr>
-                            <tr><td>PETS</td><td>0.9960</td></tr>
-                            <tr><td>FOOD & BEVERAGES</td><td>0.8476</td></tr>
-                            <tr><td>GROCERIES</td><td>0.9649</td></tr>
-                        </table>
-                    
+                
                         <h4>Confusion Matrix</h4>
-                        <p>The confusion matrix below illustrates the model's performance across transaction categories. It shows true classifications vs. misclassifications for each category.</p>
-                    
                         <figure>
                             <img src="figure/log_reg_confusion.png" alt="Logistic Regression Confusion Matrix">
                             <figcaption>Figure: Confusion Matrix for Logistic Regression Model.</figcaption>
                         </figure>
-                    
                     </details>
-    
+                
                     <!-- Random Forest Section -->
                     <details>
-                        <summary><h3>Random Forest with TF-IDF Vectorization</h3></summary>
-                    
+                        <summary><strong>Random Forest with TF-IDF Vectorization</strong></summary>
                         <p>
                             To improve classification performance, we implemented a Random Forest model. 
                             While this model introduces greater complexity, its performance was slightly lower than Logistic Regression.
                         </p>
-                    
+                
                         <h4>TF-IDF Vectorization</h4>
                         <p>We employed a TF-IDF vectorizer to transform text data into a matrix of features with the following parameters:</p>
                         <ul>
@@ -252,7 +223,7 @@
                             <li><strong>max_df=0.95:</strong> Ignored terms appearing in more than 95% of documents.</li>
                             <li><strong>min_df=5:</strong> Excluded terms appearing in fewer than 5 documents.</li>
                         </ul>
-                    
+                
                         <h4>Random Forest Model</h4>
                         <p>For classification, we configured the Random Forest model with:</p>
                         <ul>
@@ -260,52 +231,24 @@
                             <li><strong>max_depth=60:</strong> Restricted tree depth to prevent overfitting.</li>
                             <li><strong>n_jobs=-1:</strong> Utilized all available CPU cores for parallel training.</li>
                         </ul>
-                    
+                
                         <p><strong>Accuracy:</strong> The Random Forest model achieved 84.28% accuracy on the test set.</p>
-                    
-                        <h4>ROC-AUC Scores</h4>
-                        <p>The table below displays the ROC-AUC scores for various transaction categories, indicating how well the model distinguishes between each class.</p>
-                        <table>
-                            <tr><th>Category</th><th>ROC-AUC Score</th></tr>
-                            <tr><td>GENERAL MERCHANDISE</td><td>0.6648</td></tr>
-                            <tr><td>OVERDRAFT</td><td>0.1965</td></tr>
-                            <tr><td>MORTGAGE</td><td>0.7607</td></tr>
-                        </table>
-                    
-                        <h4>Per-Category Accuracy</h4>
-                        <p>The following table shows the accuracy for each transaction category:</p>
-                        <table>
-                            <tr><th>Category</th><th>Accuracy</th></tr>
-                            <tr><td>GENERAL MERCHANDISE</td><td>0.8991</td></tr>
-                            <tr><td>OVERDRAFT</td><td>0.9998</td></tr>
-                            <tr><td>EDUCATION</td><td>0.9967</td></tr>
-                            <tr><td>TRAVEL</td><td>0.9838</td></tr>
-                            <tr><td>RENT</td><td>0.9984</td></tr>
-                            <tr><td>MORTGAGE</td><td>0.9993</td></tr>
-                            <tr><td>PETS</td><td>0.9960</td></tr>
-                            <tr><td>FOOD & BEVERAGES</td><td>0.8476</td></tr>
-                            <tr><td>GROCERIES</td><td>0.9649</td></tr>
-                        </table>
-                    
+                
                         <h4>Confusion Matrix</h4>
-                        <p>The confusion matrix below illustrates the model's performance across transaction categories. It shows true classifications vs. misclassifications for each category.</p>
-                    
                         <figure>
                             <img src="figure/random_forest_confusion.png" alt="Random Forest Confusion Matrix">
                             <figcaption>Figure: Confusion Matrix for Random Forest Model.</figcaption>
                         </figure>
-                    
                     </details>
-            
+                
                     <!-- FastText Section -->
                     <details>
-                        <summary><h3>FastText for Text Classification</h3></summary>
-                    
+                        <summary><strong>FastText for Text Classification</strong></summary>
                         <p>
                             FastText is a lightweight and efficient text classification model developed by Facebook AI. 
                             We trained this model to categorize transaction memos with high speed and accuracy.
                         </p>
-                    
+                
                         <h4>Model Training</h4>
                         <p>The FastText model was trained using the following hyperparameters:</p>
                         <ul>
@@ -315,53 +258,24 @@
                             <li><strong>Embedding Dimension:</strong> 50</li>
                             <li><strong>Bucket Size:</strong> 200,000</li>
                         </ul>
-                    
+                
                         <p><strong>Accuracy:</strong> The FastText model achieved an impressive 98.93% accuracy.</p>
-                    
-                        <h4>FastText Classification Report</h4>
-                        <p>The table below presents precision, recall, and F1-scores for different transaction categories:</p>
-                        <table>
-                            <tr><th>Category</th><th>Precision</th><th>Recall</th><th>F1-Score</th></tr>
-                            <tr><td>GROCERIES</td><td>0.99</td><td>0.99</td><td>0.99</td></tr>
-                            <tr><td>FOOD & BEVERAGES</td><td>1.00</td><td>1.00</td><td>1.00</td></tr>
-                            <tr><td>MORTGAGE</td><td>0.99</td><td>0.99</td><td>0.99</td></tr>
-                        </table>
-                    
-                        <h4>Per-Category Accuracy</h4>
-                        <p>The per-category accuracy breakdown highlights how well FastText categorized each transaction type:</p>
-                        <table>
-                            <tr><th>Category</th><th>Accuracy</th></tr>
-                            <tr><td>GENERAL MERCHANDISE</td><td>0.95</td></tr>
-                            <tr><td>OVERDRAFT</td><td>0.98</td></tr>
-                            <tr><td>EDUCATION</td><td>0.99</td></tr>
-                            <tr><td>TRAVEL</td><td>0.98</td></tr>
-                            <tr><td>RENT</td><td>0.99</td></tr>
-                            <tr><td>MORTGAGE</td><td>0.99</td></tr>
-                            <tr><td>PETS</td><td>0.98</td></tr>
-                            <tr><td>FOOD & BEVERAGES</td><td>1.00</td></tr>
-                            <tr><td>GROCERIES</td><td>0.99</td></tr>
-                        </table>
-                    
+                
                         <h4>Confusion Matrix</h4>
-                        <p>The confusion matrix below illustrates FastText’s performance across all transaction categories:</p>
-                    
                         <figure>
                             <img src="figure/fasttext_confusion.png" alt="FastText Confusion Matrix">
                             <figcaption>Figure: Confusion Matrix for FastText Model.</figcaption>
                         </figure>
-                    
                     </details>
-        
-            
+                
                     <!-- Transformer LLM Section -->
                     <details>
-                        <summary><h3>LLM with Transformer Model</h3></summary>
-                    
+                        <summary><strong>LLM with Transformer Model</strong></summary>
                         <p>
                             We implemented a Transformer-based model using <code>distilbert-base-uncased</code> to leverage deep learning for text classification. 
                             This model was trained to classify transaction memos with contextual embeddings.
                         </p>
-                    
+                
                         <h4>Training Configuration</h4>
                         <p>The model was configured with the following hyperparameters:</p>
                         <ul>
@@ -374,34 +288,12 @@
                             <li><strong>Gradient Clipping:</strong> Maximum value of 1.0</li>
                             <li><strong>Epochs:</strong> 3</li>
                         </ul>
-                    
-                        <h4>Tokenization & Feature Augmentation</h4>
-                        <p>
-                            Using <code>AutoTokenizer</code>, we tokenized the memo field and added custom tokens for whole dollar amounts and date information. 
-                            These enhancements provided additional context for classification.
-                        </p>
-                    
-                        <h4>Performance Evaluation</h4>
-                        <ul>
-                            <li><strong>Training Loss:</strong> 0.1361</li>
-                            <li><strong>Validation Loss:</strong> 0.0603</li>
-                            <li><strong>Validation Accuracy:</strong> 98.56%</li>
-                        </ul>
-                    
-                        <h4>Model Inference</h4>
-                        <p>
-                            The trained Transformer model was evaluated on a test set with nine transaction categories. 
-                            The inference process took approximately 2 minutes and 43 seconds, demonstrating efficient classification.
-                        </p>
-                    
+                
                         <h4>Confusion Matrix</h4>
-                        <p>The confusion matrix below visualizes the Transformer model's performance across transaction categories:</p>
-                    
                         <figure>
                             <img src="figure/transformer_confusion.png" alt="Transformer Model Confusion Matrix">
                             <figcaption>Figure: Confusion Matrix for Transformer Model.</figcaption>
                         </figure>
-                    
                     </details>
                 </section>
             </section>
