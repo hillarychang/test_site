@@ -297,7 +297,123 @@
                     </details>
                 </section>
             </section>
+
+            <!-- Cash Score Section -->
+            <section id="cash-score">
+                <h3>Cash Score</h3>
             
+                <!-- Exploratory Data Analysis -->
+                <section id="exploratory-data-analysis">
+                    <h4><strong>Exploratory Data Analysis</strong></h4>
+                    <details>
+                        <summary>Overview</summary>
+                        <p>We conducted an exploratory data analysis (EDA) to understand patterns in consumer spending, overdrafts, and transaction distributions. This helped us identify meaningful features for predicting credit risk.</p>
+                    </details>
+                </section>
+            
+                <!-- Balance Trends for Delinquent vs. Non-Delinquent Consumers -->
+                <section id="balance-trends">
+                    <h4><strong>Balance Trends for Delinquent vs. Non-Delinquent Consumers</strong></h4>
+                    <details>
+                        <summary>Comparing Delinquent and Non-Delinquent Consumers</summary>
+                        <p>We analyzed balance trends over time to observe how cash flow differs between individuals who are delinquent and those who are not. Key findings include...</p>
+                        <figure>
+                            <img src="figure/balance_trends.png" alt="Balance Trends">
+                            <figcaption>Figure: Average balance trends for delinquent vs. non-delinquent consumers.</figcaption>
+                        </figure>
+                    </details>
+                </section>
+            
+                <!-- Feature Engineering -->
+                <section id="feature-engineering">
+                    <h4><strong>Feature Engineering</strong></h4>
+                    <details>
+                        <summary>Creating Predictive Features</summary>
+                        <p>We engineered a set of financial features that capture income stability, spending behavior, overdraft frequency, and transaction patterns.</p>
+                        <ul>
+                            <li><strong>Overdraft Frequency:</strong> The number of times a consumer overdrafted in the past 6 months.</li>
+                            <li><strong>Spending Volatility:</strong> Standard deviation of monthly expenditures.</li>
+                            <li><strong>Recurring Payments:</strong> Identifying transactions like rent, utilities, and subscriptions.</li>
+                        </ul>
+                    </details>
+                </section>
+            
+                <!-- Model Training -->
+                <section id="model-training">
+                    <h4><strong>Model Training</strong></h4>
+                    <details>
+                        <summary>Training Pipeline</summary>
+                        <p>We trained multiple models, including Logistic Regression, Random Forest, and Gradient Boosting, to predict delinquency risk.</p>
+                        <ul>
+                            <li><strong>Train-Test Split:</strong> 80% training, 20% testing.</li>
+                            <li><strong>Feature Scaling:</strong> Normalization was applied to numerical features.</li>
+                            <li><strong>Cross-Validation:</strong> We used k-fold cross-validation for model robustness.</li>
+                        </ul>
+                    </details>
+                </section>
+            
+                <!-- Model Evaluation -->
+                <section id="model-evaluation">
+                    <h4><strong>Model Evaluation</strong></h4>
+                    <details>
+                        <summary>Performance Metrics</summary>
+                        <p>We evaluated model performance using precision, recall, F1-score, and AUC-ROC.</p>
+                        <figure>
+                            <img src="figure/model_evaluation.png" alt="Model Evaluation Metrics">
+                            <figcaption>Figure: Model performance evaluation using key metrics.</figcaption>
+                        </figure>
+                    </details>
+                </section>
+            
+                <!-- Feature Performance -->
+                <section id="feature-performance">
+                    <h4><strong>Feature Performance</strong></h4>
+                    <details>
+                        <summary>Key Predictive Features</summary>
+                        <p>We analyzed the most influential features for predicting delinquency. Overdraft frequency and spending patterns were among the top indicators.</p>
+                        <figure>
+                            <img src="figure/feature_importance.png" alt="Feature Importance">
+                            <figcaption>Figure: Top predictive features ranked by importance.</figcaption>
+                        </figure>
+                    </details>
+                </section>
+            
+                <!-- Model Performance -->
+                <section id="model-performance">
+                    <h4><strong>Model Performance</strong></h4>
+                    <details>
+                        <summary>Comparing Models</summary>
+                        <p>We compared various models based on accuracy, F1-score, and inference time. Gradient Boosting provided the best tradeoff between performance and efficiency.</p>
+                        <table>
+                            <tr>
+                                <th>Model</th>
+                                <th>Accuracy</th>
+                                <th>F1-Score</th>
+                                <th>AUC-ROC</th>
+                            </tr>
+                            <tr>
+                                <td>Logistic Regression</td>
+                                <td>85.4%</td>
+                                <td>0.79</td>
+                                <td>0.88</td>
+                            </tr>
+                            <tr>
+                                <td>Random Forest</td>
+                                <td>89.1%</td>
+                                <td>0.82</td>
+                                <td>0.91</td>
+                            </tr>
+                            <tr>
+                                <td>Gradient Boosting</td>
+                                <td>92.3%</td>
+                                <td>0.87</td>
+                                <td>0.94</td>
+                            </tr>
+                        </table>
+                    </details>
+                </section>
+            </section>
+
             <section id="results">
                 <h3>Results</h3>
                 <p>Our models achieved accuracy above 80%, with XGBoost providing the highest performance in predicting credit risk. The most influential features included overdraft frequency, balance volatility, and transaction categories related to high-risk spending.</p>
