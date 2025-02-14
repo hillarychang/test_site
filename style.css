@@ -251,4 +251,8 @@ figcaption {
     display: inline-block;
 }
 
-
+.transformation-intro {
+    font-size: 1.4rem; /* Make it larger */
+    font-weight: bold;
+    margin-top: 1.5rem;
+}
