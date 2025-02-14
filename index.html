@@ -61,7 +61,7 @@
             
             <section id="introduction">
                 <h3>Introduction</h3>
-                <p>Access to credit is a crucial factor in financial stability, yet millions are excluded from traditional credit systems. Our project proposes an alternative credit scoring method based on transaction data, which provides a more comprehensive view of an individual’s financial habits. This approach considers spending behaviors, income consistency, overdrafts, and other transactional indicators.</p>
+                <p>Determining a customer’s creditworthiness is essential for banks, influencing decisions about loans, credit cards, and other financial services. While traditional credit scores are widely used, they often fail to capture the full financial picture, especially for individuals with little to no credit history. Our project aims to bridge this gap by leveraging transaction data to assess financial behavior rather than relying solely on past credit activity. By analyzing spending habits, income consistency, and transaction types, we seek to create a scoring model that provides a more accurate and equitable reflection of financial reliability. As part of our project, we have implemented a data pipeline to support this model, including a categorization system that classifies transaction memos from vendors with high accuracy and low latency—ensuring that entries like "Amazon.com" are correctly categorized under "General Merchandise." This categorization plays a key role in our broader goal of developing the Cash Score, a numerical value ranging from 1 to 999 that predicts a consumer’s likelihood of defaulting on debt or credit. By equipping financial institutions with this tool, we aim to enhance risk assessment while ensuring that credit access is extended to those with strong banking histories, making lending practices more inclusive and effective.</p>
             </section>
             
             <section id="methods">
@@ -84,7 +84,7 @@
                 <section id="feature-creation">
                     <h4>Feature Creation and Selection</h4>
                     <details>
-                        <summary><h4>Cleaning the Memo Fields</h4></summary>
+                        <h4>Cleaning the Memo Fields</h4>
                     
                         <p>To prepare the memo field for analysis, we first applied a series of cleaning steps to standardize the text. We transformed all text to lowercase for uniformity, removed any extraneous punctuation and symbols, and stripped out dates, state abbreviations, and recurring text that didn’t contribute to transaction categorization (e.g., “POS withdrawal”). Placeholder values such as multiple X’s were also removed.</p>
                     
