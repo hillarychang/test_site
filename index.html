@@ -394,36 +394,284 @@
                     <!-- Model Training -->
                     <details>
                         <summary>Model Training</summary>
-                        <p>We trained multiple models, including Logistic Regression, Random Forest, and Gradient Boosting, to predict delinquency risk.</p>
+                        
+                        <p>We trained multiple machine learning models to predict delinquency risk. These models range from simple interpretable baselines to advanced gradient boosting and neural networks, each chosen for its ability to capture different aspects of financial behavior.</p>
+                    
+                        <ul>
+                            <li><strong>Logistic Regression:</strong> A simple, interpretable baseline model.</li>
+                            <li><strong>Random Forest:</strong> Captures non-linear financial relationships.</li>
+                            <li><strong>XGBoost:</strong> Optimized for structured financial data.</li>
+                            <li><strong>Neural Networks:</strong> Captures complex spending patterns.</li>
+                            <li><strong>LightGBM:</strong> Efficient with categorical features and handling imbalanced data.</li>
+                            <li><strong>Balanced RF:</strong> Handles class imbalance by weighting classes or resampling.</li>
+                            <li><strong>CatBoost:</strong> Handles categorical features automatically and is robust to overfitting.</li>
+                            <li><strong>HistGB:</strong> A histogram-based gradient boosting model.</li>
+                            <li><strong>RUSBoost:</strong> Combines Random Under-Sampling with boosting to address class imbalance while maintaining predictive performance.</li>
+                        </ul>
+                    
+                        <p>Additionally, we applied best practices to optimize our model training process:</p>
                         <ul>
                             <li><strong>Train-Test Split:</strong> 80% training, 20% testing.</li>
                             <li><strong>Feature Scaling:</strong> Normalization was applied to numerical features.</li>
-                            <li><strong>Cross-Validation:</strong> We used k-fold cross-validation for model robustness.</li>
+                            <li><strong>Cross-Validation:</strong> We used k-fold cross-validation to ensure model robustness and prevent overfitting.</li>
                         </ul>
                     </details>
-            
+
                     <!-- Model Evaluation -->
                     <details>
                         <summary>Model Evaluation</summary>
-                        <p>We evaluated model performance using precision, recall, F1-score, and AUC-ROC.</p>
+                    
+                        <p>We evaluated model performance using a combination of classification metrics, computation efficiency, and techniques to address class imbalance.</p>
+                    
+                        <h4>Key Evaluation Metrics</h4>
+                        <ul>
+                            <li><strong>Accuracy and F1-Score:</strong> Measures overall classification performance.</li>
+                            <li><strong>ROC-AUC:</strong> Evaluates the model's ability to differentiate between delinquent and non-delinquent users.</li>
+                            <li><strong>Precision and Recall:</strong> Precision measures correctly identified positive cases, while recall evaluates the proportion of actual delinquents correctly detected.</li>
+                            <li><strong>Training Time:</strong> The time required to train the model, crucial for scalability in production.</li>
+                            <li><strong>Prediction Time:</strong> The time taken to make predictions on new data.</li>
+                            <li><strong>Feature Importance:</strong> Highlights the most predictive variables that contribute to delinquency classification.</li>
+                        </ul>
+                    
+                        <h4>Addressing Class Imbalance</h4>
+                        <p>Since delinquents make up only ~8.4% of the dataset, we applied techniques to balance the dataset and improve model robustness.</p>
+                        <ul>
+                            <li><strong>SMOTE & SMOTEENN:</strong> Synthetic Minority Over-sampling Technique (SMOTE) and SMOTE-Edited Nearest Neighbors (SMOTEENN) were used to generate synthetic samples and refine class distributions.</li>
+                            <li><strong>Feature Normalization:</strong> Standardization of key numerical features ensured that different scales did not affect model performance.</li>
+                        </ul>
+                    
                         <figure>
                             <img src="figure/model_evaluation.png" alt="Model Evaluation Metrics">
                             <figcaption>Figure: Model performance evaluation using key metrics.</figcaption>
                         </figure>
                     </details>
+
             
                     <!-- Feature Performance -->
                     <details>
                         <summary>Feature Performance</summary>
-                        <p>We analyzed the most influential features for predicting delinquency. Overdraft frequency and spending patterns were among the top indicators.</p>
+                    
+                        <p>We analyzed the most influential features for predicting delinquency using an <strong>XGBoost Classifier (XGBClassifier)</strong>. Overdraft frequency and spending patterns were among the top indicators.</p>
+                    
+                        <h4>Key Predictors of Delinquency</h4>
+                        <ul>
+                            <li><strong>Account Type - Savings:</strong> Indicates whether a consumer has a savings account.</li>
+                            <li><strong>Account Fees:</strong> Total sum of all account-related fees.</li>
+                            <li><strong>Credit Score:</strong> Credit score of a consumer, which serves as a baseline feature.</li>
+                            <li><strong>Overdraft Median:</strong> Median amount of overdraft transactions.</li>
+                            <li><strong>Account Fees Median:</strong> Median amount of account-related fees.</li>
+                            <li><strong>BNPL Std:</strong> Standard deviation of Buy-Now-Pay-Later (BNPL) transactions.</li>
+                            <li><strong>Overdraft Count:</strong> Total number of overdraft transactions.</li>
+                            <li><strong>Investment Income Median:</strong> Median amount of investment income.</li>
+                            <li><strong>Investment Income Count:</strong> Number of investment-related transactions.</li>
+                            <li><strong>Banking Catch All Std:</strong> Standard deviation of a consumer’s transactions within this category.</li>
+                        </ul>
+                    
+                        <h4>Top Features from XGBClassifier</h4>
+                        <table>
+                            <tr>
+                                <th>Feature</th>
+                                <th>Importance</th>
+                                <th>Correlation</th>
+                            </tr>
+                            <tr>
+                                <td>Account Type - Savings</td>
+                                <td>0.044091</td>
+                                <td>-0.099071</td>
+                            </tr>
+                            <tr>
+                                <td>Account Fees Count</td>
+                                <td>0.037083</td>
+                                <td>0.020680</td>
+                            </tr>
+                            <tr>
+                                <td>Credit Score</td>
+                                <td>0.030284</td>
+                                <td>-0.249976</td>
+                            </tr>
+                            <tr>
+                                <td>Overdraft Median</td>
+                                <td>0.026024</td>
+                                <td>0.000407</td>
+                            </tr>
+                            <tr>
+                                <td>Account Fees Median</td>
+                                <td>0.021387</td>
+                                <td>0.001497</td>
+                            </tr>
+                            <tr>
+                                <td>BNPL Std</td>
+                                <td>0.021323</td>
+                                <td>0.034083</td>
+                            </tr>
+                            <tr>
+                                <td>Overdraft Count</td>
+                                <td>0.021319</td>
+                                <td>0.066101</td>
+                            </tr>
+                            <tr>
+                                <td>Investment Income Median</td>
+                                <td>0.018767</td>
+                                <td>0.004675</td>
+                            </tr>
+                            <tr>
+                                <td>Investment Income Count</td>
+                                <td>0.017630</td>
+                                <td>-0.026354</td>
+                            </tr>
+                            <tr>
+                                <td>Banking Catch All Std</td>
+                                <td>0.014733</td>
+                                <td>-0.010585</td>
+                            </tr>
+                        </table>
+                    
                         <figure>
                             <img src="figure/feature_importance.png" alt="Feature Importance">
                             <figcaption>Figure: Top predictive features ranked by importance.</figcaption>
                         </figure>
                     </details>
-            
+
                     <!-- Model Performance -->
                     <details>
+                        <summary>Model Performance</summary>
+                    
+                        <p>We compared various models based on accuracy, F1-score, and inference time. The <strong>Histogram-Based Gradient Boosting (HistGB)</strong> model achieved the highest ROC-AUC score, while <strong>Balanced Random Forest (Balanced RF)</strong> provided the best accuracy. Logistic Regression was the fastest to train but had lower performance in comparison.</p>
+                    
+                        <h4>Model Performance Metrics</h4>
+                        <table>
+                            <tr>
+                                <th>Model</th>
+                                <th>ROC-AUC</th>
+                                <th>Accuracy</th>
+                                <th>Precision</th>
+                                <th>Recall</th>
+                                <th>F1-Score</th>
+                            </tr>
+                            <tr>
+                                <td><strong>HistGB</strong></td>
+                                <td><strong>0.8424</strong></td>
+                                <td>0.9135</td>
+                                <td>0.8898</td>
+                                <td>0.9135</td>
+                                <td>0.8995</td>
+                            </tr>
+                            <tr>
+                                <td>XGBoost</td>
+                                <td>0.8393</td>
+                                <td>0.9101</td>
+                                <td>0.8890</td>
+                                <td>0.9101</td>
+                                <td>0.8981</td>
+                            </tr>
+                            <tr>
+                                <td>LightGBM</td>
+                                <td>0.8289</td>
+                                <td>0.9139</td>
+                                <td>0.8894</td>
+                                <td>0.9139</td>
+                                <td>0.8994</td>
+                            </tr>
+                            <tr>
+                                <td>CatBoost</td>
+                                <td>0.8232</td>
+                                <td>0.9158</td>
+                                <td>0.8879</td>
+                                <td>0.9158</td>
+                                <td>0.8989</td>
+                            </tr>
+                            <tr>
+                                <td>RUSBoost</td>
+                                <td>0.8059</td>
+                                <td>0.8263</td>
+                                <td>0.9050</td>
+                                <td>0.8263</td>
+                                <td>0.8579</td>
+                            </tr>
+                            <tr>
+                                <td>Random Forest</td>
+                                <td>0.7943</td>
+                                <td>0.9155</td>
+                                <td>0.8853</td>
+                                <td>0.9155</td>
+                                <td>0.8973</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Balanced RF</strong></td>
+                                <td>0.7916</td>
+                                <td><strong>0.9197</strong></td>
+                                <td>0.8926</td>
+                                <td><strong>0.9197</strong></td>
+                                <td><strong>0.9022</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Logistic Regression</td>
+                                <td>0.7611</td>
+                                <td>0.7594</td>
+                                <td><strong>0.9067</strong></td>
+                                <td>0.7594</td>
+                                <td>0.8140</td>
+                            </tr>
+                        </table>
+                    
+                        <h4>Time-Based Model Performance</h4>
+                        <table>
+                            <tr>
+                                <th>Model</th>
+                                <th>Training Time (s)</th>
+                                <th>Prediction Time (s)</th>
+                            </tr>
+                            <tr>
+                                <td>HistGB</td>
+                                <td>8.76</td>
+                                <td>TODO</td>
+                            </tr>
+                            <tr>
+                                <td>XGBoost</td>
+                                <td>5.68</td>
+                                <td>TODO</td>
+                            </tr>
+                            <tr>
+                                <td>LightGBM</td>
+                                <td>4.40</td>
+                                <td>TODO</td>
+                            </tr>
+                            <tr>
+                                <td>CatBoost</td>
+                                <td>42.61</td>
+                                <td>TODO</td>
+                            </tr>
+                            <tr>
+                                <td>RUSBoost</td>
+                                <td>23.32</td>
+                                <td>TODO</td>
+                            </tr>
+                            <tr>
+                                <td>Random Forest</td>
+                                <td>22.37</td>
+                                <td>TODO</td>
+                            </tr>
+                            <tr>
+                                <td>Balanced RF</td>
+                                <td>27.23</td>
+                                <td>TODO</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Logistic Regression</strong></td>
+                                <td><strong>2.35</strong></td>
+                                <td>TODO</td>
+                            </tr>
+                        </table>
+                    
+                        <h4>ROC-AUC Comparison</h4>
+                        <p>The following figure compares the ROC-AUC scores of all models tested, demonstrating their ability to distinguish between delinquent and non-delinquent consumers.</p>
+                        <figure>
+                            <img src="figure/auc_roc_all_models.png" alt="AUC-ROC Scores">
+                            <figcaption>Figure: Comparison of AUC-ROC scores for all models.</figcaption>
+                        </figure>
+                    
+                    </details>
+
                         <summary>Model Performance</summary>
                         <p>We compared various models based on accuracy, F1-score, and inference time. Gradient Boosting provided the best tradeoff between performance and efficiency.</p>
                         <table>
