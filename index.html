@@ -332,10 +332,10 @@
             
                 <!-- Methodology -->
                 <section id="methodology">
-                    <h4><strong>Methodology</strong></h4>
+                    <h4 class="feature-title"><strong>Methodology</strong></h4>
             
                     <!-- Exploratory Data Analysis -->
-                    <details>
+                    <details class="expandable-section">
                         <summary>Exploratory Data Analysis</summary>
                         <p>We conducted an exploratory data analysis (EDA) to understand patterns in consumer spending, overdrafts, and transaction distributions. This helped us identify meaningful features for predicting credit risk.</p>
                     
@@ -349,7 +349,7 @@
 
             
                     <!-- Balance Trends for Delinquent vs. Non-Delinquent Consumers -->
-                    <details>
+                    <details class="expandable-section">
                         <summary>Comparing Delinquent and Non-Delinquent Consumers</summary>
                         
                         <p>We analyzed balance trends over time to observe how cash flow differs between individuals who are delinquent and those who are not. Our key findings highlight financial stability differences based on account balance trends.</p>
@@ -387,7 +387,7 @@
                     </details>
             
                     <!-- Feature Engineering -->
-                    <details>
+                    <details class="expandable-section">
                         <summary>Feature Engineering</summary>
                         
                         <p>We engineered multiple features relevant to the prediction of delinquency, focusing on balance trends, transaction behaviors, and account types. These features help in assessing financial stability and predicting default risk.</p>
@@ -417,10 +417,10 @@
             
                 <!-- Models and Results -->
                 <section id="models-results">
-                    <h4><strong>Models and Results</strong></h4>
+                    <h4 class="feature-title"><strong>Models and Results</strong></h4>
             
                     <!-- Model Training -->
-                    <details>
+                    <details class="expandable-section">
                         <summary>Model Training</summary>
                         
                         <p>We trained multiple machine learning models to predict delinquency risk. These models range from simple interpretable baselines to advanced gradient boosting and neural networks, each chosen for its ability to capture different aspects of financial behavior.</p>
@@ -446,7 +446,7 @@
                     </details>
 
                     <!-- Model Evaluation -->
-                    <details>
+                    <details class="expandable-section">
                         <summary>Model Evaluation</summary>
                     
                         <p>We evaluated model performance using a combination of classification metrics, computation efficiency, and techniques to address class imbalance.</p>
@@ -476,7 +476,7 @@
 
             
                     <!-- Feature Performance -->
-                    <details>
+                    <details class="expandable-section">
                         <summary>Feature Performance</summary>
                     
                         <p>We analyzed the most influential features for predicting delinquency using an <strong>XGBoost Classifier (XGBClassifier)</strong>. Overdraft frequency and spending patterns were among the top indicators.</p>
@@ -561,7 +561,7 @@
                     </details>
 
                     <!-- Model Performance -->
-                    <details>
+                    <details class="expandable-section">
                         <summary>Model Performance</summary>
                     
                         <p>We compared various models based on accuracy, F1-score, and inference time. The <strong>Histogram-Based Gradient Boosting (HistGB)</strong> model achieved the highest ROC-AUC score, while <strong>Balanced Random Forest (Balanced RF)</strong> provided the best accuracy. Logistic Regression was the fastest to train but had lower performance in comparison.</p>
