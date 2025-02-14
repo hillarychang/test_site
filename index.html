@@ -302,18 +302,17 @@
             <section id="cash-score">
                 <h3>Cash Score</h3>
             
-                <!-- Exploratory Data Analysis -->
-                <section id="exploratory-data-analysis">
-                    <h4><strong>Exploratory Data Analysis</strong></h4>
+                <!-- Methodology -->
+                <section id="methodology">
+                    <h4><strong>Methodology</strong></h4>
+            
+                    <!-- Exploratory Data Analysis -->
                     <details>
-                        <summary>Overview</summary>
+                        <summary>Exploratory Data Analysis</summary>
                         <p>We conducted an exploratory data analysis (EDA) to understand patterns in consumer spending, overdrafts, and transaction distributions. This helped us identify meaningful features for predicting credit risk.</p>
                     </details>
-                </section>
             
-                <!-- Balance Trends for Delinquent vs. Non-Delinquent Consumers -->
-                <section id="balance-trends">
-                    <h4><strong>Balance Trends for Delinquent vs. Non-Delinquent Consumers</strong></h4>
+                    <!-- Balance Trends for Delinquent vs. Non-Delinquent Consumers -->
                     <details>
                         <summary>Comparing Delinquent and Non-Delinquent Consumers</summary>
                         <p>We analyzed balance trends over time to observe how cash flow differs between individuals who are delinquent and those who are not. Key findings include...</p>
@@ -322,13 +321,10 @@
                             <figcaption>Figure: Average balance trends for delinquent vs. non-delinquent consumers.</figcaption>
                         </figure>
                     </details>
-                </section>
             
-                <!-- Feature Engineering -->
-                <section id="feature-engineering">
-                    <h4><strong>Feature Engineering</strong></h4>
+                    <!-- Feature Engineering -->
                     <details>
-                        <summary>Creating Predictive Features</summary>
+                        <summary>Feature Engineering</summary>
                         <p>We engineered a set of financial features that capture income stability, spending behavior, overdraft frequency, and transaction patterns.</p>
                         <ul>
                             <li><strong>Overdraft Frequency:</strong> The number of times a consumer overdrafted in the past 6 months.</li>
@@ -338,11 +334,13 @@
                     </details>
                 </section>
             
-                <!-- Model Training -->
-                <section id="model-training">
-                    <h4><strong>Model Training</strong></h4>
+                <!-- Models and Results -->
+                <section id="models-results">
+                    <h4><strong>Models and Results</strong></h4>
+            
+                    <!-- Model Training -->
                     <details>
-                        <summary>Training Pipeline</summary>
+                        <summary>Model Training</summary>
                         <p>We trained multiple models, including Logistic Regression, Random Forest, and Gradient Boosting, to predict delinquency risk.</p>
                         <ul>
                             <li><strong>Train-Test Split:</strong> 80% training, 20% testing.</li>
@@ -350,39 +348,30 @@
                             <li><strong>Cross-Validation:</strong> We used k-fold cross-validation for model robustness.</li>
                         </ul>
                     </details>
-                </section>
             
-                <!-- Model Evaluation -->
-                <section id="model-evaluation">
-                    <h4><strong>Model Evaluation</strong></h4>
+                    <!-- Model Evaluation -->
                     <details>
-                        <summary>Performance Metrics</summary>
+                        <summary>Model Evaluation</summary>
                         <p>We evaluated model performance using precision, recall, F1-score, and AUC-ROC.</p>
                         <figure>
                             <img src="figure/model_evaluation.png" alt="Model Evaluation Metrics">
                             <figcaption>Figure: Model performance evaluation using key metrics.</figcaption>
                         </figure>
                     </details>
-                </section>
             
-                <!-- Feature Performance -->
-                <section id="feature-performance">
-                    <h4><strong>Feature Performance</strong></h4>
+                    <!-- Feature Performance -->
                     <details>
-                        <summary>Key Predictive Features</summary>
+                        <summary>Feature Performance</summary>
                         <p>We analyzed the most influential features for predicting delinquency. Overdraft frequency and spending patterns were among the top indicators.</p>
                         <figure>
                             <img src="figure/feature_importance.png" alt="Feature Importance">
                             <figcaption>Figure: Top predictive features ranked by importance.</figcaption>
                         </figure>
                     </details>
-                </section>
             
-                <!-- Model Performance -->
-                <section id="model-performance">
-                    <h4><strong>Model Performance</strong></h4>
+                    <!-- Model Performance -->
                     <details>
-                        <summary>Comparing Models</summary>
+                        <summary>Model Performance</summary>
                         <p>We compared various models based on accuracy, F1-score, and inference time. Gradient Boosting provided the best tradeoff between performance and efficiency.</p>
                         <table>
                             <tr>
