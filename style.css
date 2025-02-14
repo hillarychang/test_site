@@ -214,3 +214,8 @@ footer {
     }
 }
 
+figcaption {
+    text-align: center;
+    font-style: italic; /* Optional: To make it look like a typical caption */
+}
+
