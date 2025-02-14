@@ -310,27 +310,80 @@
                     <details>
                         <summary>Exploratory Data Analysis</summary>
                         <p>We conducted an exploratory data analysis (EDA) to understand patterns in consumer spending, overdrafts, and transaction distributions. This helped us identify meaningful features for predicting credit risk.</p>
+                    
+                        <ul>
+                            <li><strong>Transaction Patterns:</strong> Identified differences in transaction behaviors between delinquent and non-delinquent consumers, such as frequency and types of purchases.</li>
+                            <li><strong>Seasonal Trends & Payday Effects:</strong> Examined how consumer spending fluctuates with seasonal trends, including holiday expenses and end-of-month payday spikes.</li>
+                            <li><strong>Income Estimation:</strong> Estimated consumer income based on recurring transactions such as payroll deposits, rent, and utility payments.</li>
+                            <li><strong>Impact of Fees & Overdrafts:</strong> Analyzed the effects of account fees, buy-now-pay-later (BNPL) transactions, and overdraft occurrences on overall financial stability.</li>
+                        </ul>
                     </details>
+
             
                     <!-- Balance Trends for Delinquent vs. Non-Delinquent Consumers -->
                     <details>
                         <summary>Comparing Delinquent and Non-Delinquent Consumers</summary>
-                        <p>We analyzed balance trends over time to observe how cash flow differs between individuals who are delinquent and those who are not. Key findings include...</p>
+                        
+                        <p>We analyzed balance trends over time to observe how cash flow differs between individuals who are delinquent and those who are not. Our key findings highlight financial stability differences based on account balance trends.</p>
+                    
+                        <ul>
+                            <li><strong>Delinquent Consumers:</strong> Frequently experience negative balances, indicating financial instability and a higher risk of missing payments.</li>
+                            <li><strong>Non-Delinquent Consumers:</strong> Maintain relatively stable balances with fewer occurrences of overdrafts, suggesting better financial health.</li>
+                            <li><strong>Periodic Fluctuations:</strong> Balance trends exhibit cyclical patterns influenced by income deposits and spending habits.</li>
+                        </ul>
+                    
                         <figure>
                             <img src="figure/balance_trends.png" alt="Balance Trends">
                             <figcaption>Figure: Average balance trends for delinquent vs. non-delinquent consumers.</figcaption>
+                        </figure>
+                    
+                        <figure>
+                            <img src="figure/balance_delinquent.png" alt="Balance Trends for Delinquent Consumers">
+                            <figcaption>Figure: Balance trends over time for five randomly selected delinquent consumers. The plot illustrates fluctuations and frequent occurrences of negative balances, highlighting financial instability.</figcaption>
+                        </figure>
+                    
+                        <figure>
+                            <img src="figure/balance_non_delinquent.png" alt="Balance Trends for Non-Delinquent Consumers">
+                            <figcaption>Figure: Balance trends over time for five randomly selected non-delinquent consumers. Compared to delinquent consumers, these users maintain more stable balances with fewer instances of overdrafts.</figcaption>
+                        </figure>
+                    
+                        <figure>
+                            <img src="figure/balance_single_non_delinquent.png" alt="Balance for a Single Non-Delinquent Consumer">
+                            <figcaption>Figure: Balance over time for a single non-delinquent consumer. The balance exhibits periodic fluctuations, potentially due to income deposits and spending patterns, but remains above zero during the observed period.</figcaption>
+                        </figure>
+                    
+                        <figure>
+                            <img src="figure/balance_single_delinquent.png" alt="Balance for a Single Delinquent Consumer">
+                            <figcaption>Figure: Balance over time for a single delinquent consumer. This consumer frequently experiences negative balances, indicating financial distress and an increased risk of missing payments.</figcaption>
                         </figure>
                     </details>
             
                     <!-- Feature Engineering -->
                     <details>
                         <summary>Feature Engineering</summary>
-                        <p>We engineered a set of financial features that capture income stability, spending behavior, overdraft frequency, and transaction patterns.</p>
+                        
+                        <p>We engineered multiple features relevant to the prediction of delinquency, focusing on balance trends, transaction behaviors, and account types. These features help in assessing financial stability and predicting default risk.</p>
+                    
                         <ul>
+                            <li><strong>Balance Features:</strong> Negative balance ratio, balance trends, payday effects.</li>
+                            <li><strong>Transaction-Based Features:</strong> Credit vs. debit transaction volume, category-based spending breakdown.</li>
+                            <li><strong>Temporal Features:</strong> Spending frequency over time, accounting for longevity effects.</li>
+                            <li><strong>Account Types:</strong> Features based on the types of accounts a consumer has.</li>
                             <li><strong>Overdraft Frequency:</strong> The number of times a consumer overdrafted in the past 6 months.</li>
                             <li><strong>Spending Volatility:</strong> Standard deviation of monthly expenditures.</li>
                             <li><strong>Recurring Payments:</strong> Identifying transactions like rent, utilities, and subscriptions.</li>
                         </ul>
+                    
+                        <figure>
+                            <img src="figure/spending_balance_ratio.png" alt="Spending Balance Ratio">
+                            <figcaption>Figure: Spending balance ratio feature created to measure how much consumers spend relative to their balance. This helps assess financial stability and risk of delinquency.</figcaption>
+                        </figure>
+                    
+                        <figure>
+                            <img src="figure/standardized_credit_balance.png" alt="Standardized Credit and Balance">
+                            <figcaption>Figure: Feature engineering step where credit and balance were standardized to allow for easier model interpretability and comparisons across different financial profiles.</figcaption>
+                        </figure>
+                    
                     </details>
                 </section>
             
