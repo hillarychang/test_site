@@ -56,7 +56,7 @@
         <main>
             <section id="abstract">
                 <h3>Abstract</h3>
-                <p>Traditional credit scoring models rely heavily on credit history, limiting access to credit for those without established credit records. Our project introduces an alternative scoring mechanism—"Cash Score"—that leverages banking transaction data to assess financial behavior and creditworthiness. By using machine learning models on transactional data, we aim to create a more inclusive and fair method for evaluating consumer credit risk.</p>
+                <p>The process of determining a creditor's trustworthiness is crucial within the context of bank data, given the ethical and regulatory constraints surrounding its use. Despite the vast quantity of available data, only a limited number of features are explicitly useful for machine learning applications, raising the question of how best to assess a customer's financial reliability. Our methodology involves refining bank data into meaningful categories using Natural Language Processing, estimating individual income based on transaction data alone, and evaluating creditworthiness with both accuracy and efficiency.</p>
             </section>
             <section id="introduction">
                 <h3>Introduction</h3>
@@ -64,8 +64,131 @@
             </section>
             <section id="methods">
                 <h3>Methods</h3>
-                <p>Our methodology consists of feature engineering from transaction data, model training using various machine learning algorithms (XGBoost, Logistic Regression, etc.), and performance evaluation through precision, recall, and ROC-AUC scores.</p>
+                <p>Our methodology consists of feature engineering from transaction data, model training using various machine learning algorithms, and performance evaluation based on key metrics. The figure below shows our overall methodology:</p>
+    
+                <figure>
+                    <img src="figure/methodology.png" alt="Overall Methodology Diagram">
+                    <figcaption>Figure: Overview of our methodology.</figcaption>
+                </figure>
             </section>
+
+            <h3>Objectives</h3>
+            <p>Our project is structured around two primary objectives: categorizing transactions based on memos and developing the <strong>Cash Score</strong>, a predictive model for assessing a consumer’s likelihood of defaulting on credit.</p>
+    
+            <!-- Cleaning the Memo Fields -->
+            <details>
+                <summary><h3>Cleaning the Memo Fields</h3></summary>
+                <p>To prepare the memo field for analysis, we first applied a series of cleaning steps to standardize the text...</p>
+    
+                <div class="image-container">
+                    <figure>
+                        <img src="figure/nonclean_df.png" alt="Uncleaned Memo Dataframe">
+                        <figcaption>Figure: Memo Data Before Cleaning.</figcaption>
+                    </figure>
+    
+                    <figure>
+                        <img src="figure/clean_df.png" alt="Cleaned Memo Dataframe">
+                        <figcaption>Figure: Memo Data After Cleaning.</figcaption>
+                    </figure>
+                </div>
+            </details>
+    
+            <!-- Token Augmentation -->
+            <details>
+                <summary><h3>Token Augmentation</h3></summary>
+                <p>We enhanced the <code>memo</code> field by adding specific tokens based on transaction characteristics...</p>
+    
+                <figure>
+                    <img src="figure/pre_token.jpeg" alt="Pre-token augmentation transaction data">
+                    <figcaption>Figure: Data Before Token Augmentation.</figcaption>
+                </figure>
+    
+                <figure>
+                    <img src="figure/post_token.jpeg" alt="Post-token augmentation transaction data">
+                    <figcaption>Figure: Data After Token Augmentation.</figcaption>
+                </figure>
+            </details>
+    
+            <!-- Logistic Regression Section -->
+            <details>
+                <summary><h3>Model Implementation & Results: Logistic Regression with TF-IDF Vectorization</h3></summary>
+                <p>To classify transaction categories based on the <code>memo</code> field, we used Logistic Regression with TF-IDF vectorization...</p>
+    
+                <h4>ROC-AUC Scores</h4>
+                <table>
+                    <tr><th>Category</th><th>ROC-AUC Score</th></tr>
+                    <tr><td>GROCERIES</td><td>0.9981</td></tr>
+                    <tr><td>FOOD & BEVERAGES</td><td>0.9956</td></tr>
+                    <tr><td>MORTGAGE</td><td>1.0000</td></tr>
+                </table>
+    
+                <figure>
+                    <img src="figure/log_reg_confusion.png" alt="Logistic Regression Confusion Matrix">
+                    <figcaption>Figure: Confusion Matrix for Logistic Regression Model.</figcaption>
+                </figure>
+            </details>
+    
+            <!-- Random Forest Section -->
+            <details>
+                <summary><h3>Model Implementation & Results: Random Forest with TF-IDF Vectorization</h3></summary>
+                <p>The Random Forest model introduces greater complexity but performs slightly lower than Logistic Regression...</p>
+    
+                <h4>ROC-AUC Scores</h4>
+                <table>
+                    <tr><th>Category</th><th>ROC-AUC Score</th></tr>
+                    <tr><td>GENERAL MERCHANDISE</td><td>0.6648</td></tr>
+                    <tr><td>OVERDRAFT</td><td>0.1965</td></tr>
+                    <tr><td>MORTGAGE</td><td>0.7607</td></tr>
+                </table>
+    
+                <figure>
+                    <img src="figure/random_forest_confusion.png" alt="Random Forest Confusion Matrix">
+                    <figcaption>Figure: Confusion Matrix for Random Forest Model.</figcaption>
+                </figure>
+            </details>
+    
+            <!-- FastText Section -->
+            <details>
+                <summary><h3>Model Implementation & Results: FastText for Text Classification</h3></summary>
+                <p>FastText is a lightweight and efficient text classification model designed for quick training and inference...</p>
+    
+                <h4>FastText Classification Report</h4>
+                <table>
+                    <tr><th>Category</th><th>Precision</th><th>Recall</th><th>F1-Score</th></tr>
+                    <tr><td>GROCERIES</td><td>0.99</td><td>0.99</td><td>0.99</td></tr>
+                    <tr><td>FOOD & BEVERAGES</td><td>1.00</td><td>1.00</td><td>1.00</td></tr>
+                    <tr><td>MORTGAGE</td><td>0.99</td><td>0.99</td><td>0.99</td></tr>
+                </table>
+    
+                <figure>
+                    <img src="figure/fasttext_confusion.png" alt="FastText Confusion Matrix">
+                    <figcaption>Figure: Confusion Matrix for FastText Model.</figcaption>
+                </figure>
+            </details>
+    
+            <!-- Transformer LLM Section -->
+            <details>
+                <summary><h3>Model Implementation & Results: LLM with Transformer Model</h3></summary>
+                <p>We implemented a Transformer-based model using <code>distilbert-base-uncased</code> for deep learning-based text classification...</p>
+    
+                <h4>Performance Evaluation</h4>
+                <ul>
+                    <li><strong>Training Loss:</strong> 0.1361</li>
+                    <li><strong>Validation Loss:</strong> 0.0603</li>
+                    <li><strong>Validation Accuracy:</strong> 98.56%</li>
+                </ul>
+    
+                <figure>
+                    <img src="figure/transformer_confusion.png" alt="Transformer Model Confusion Matrix">
+                    <figcaption>Figure: Confusion Matrix for Transformer Model.</figcaption>
+                </figure>
+            </details>
+
+            
+<!--             <section id="methods">
+                <h3>Methods</h3>
+                <p>Our methodology consists of feature engineering from transaction data, model training using various machine learning algorithms (XGBoost, Logistic Regression, etc.), and performance evaluation through precision, recall, and ROC-AUC scores.</p>
+            </section> -->
             <section id="results">
                 <h3>Results</h3>
                 <p>Our models achieved accuracy above 80%, with XGBoost providing the highest performance in predicting credit risk. The most influential features included overdraft frequency, balance volatility, and transaction categories related to high-risk spending.</p>
