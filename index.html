@@ -276,7 +276,7 @@
                             FastText is a lightweight and efficient text classification model developed by Facebook AI. 
                             We trained this model to categorize transaction memos with high speed and accuracy.
                         </p>
-                
+                    
                         <h4 class="process-intro">Model Training</h4>
                         <p>The FastText model was trained using the following hyperparameters:</p>
                         <ul>
@@ -286,14 +286,91 @@
                             <li><strong>Embedding Dimension:</strong> 50</li>
                             <li><strong>Bucket Size:</strong> 200,000</li>
                         </ul>
-                
-                        <p><strong>Accuracy:</strong> The FastText model achieved an impressive 98.93% accuracy.</p>
-                
-                        <h4 class="process-intro">Confusion Matrix</h4>
-                        <figure>
-                            <img src="figure/fasttext_confusion.png" alt="FastText Confusion Matrix">
-                            <figcaption>Figure: Confusion Matrix for FastText Model.</figcaption>
-                        </figure>
+                    
+                        <p><strong>Accuracy:</strong> The FastText model achieved an impressive 98.9% accuracy.</p>
+                    
+                        <h4 class="process-intro">Classification Report</h4>
+                        <p>The table below presents precision, recall, and F1-scores for different transaction categories:</p>
+                        
+                        <table>
+                            <tr>
+                                <th>Category</th>
+                                <th>Precision</th>
+                                <th>Recall</th>
+                                <th>F1-Score</th>
+                                <th>Support</th>
+                            </tr>
+                            <tr>
+                                <td>GENERAL_MERCHANDISE</td>
+                                <td>0.98</td>
+                                <td>0.94</td>
+                                <td>0.96</td>
+                                <td>892</td>
+                            </tr>
+                            <tr>
+                                <td>TRAVEL</td>
+                                <td>0.98</td>
+                                <td>0.99</td>
+                                <td>0.99</td>
+                                <td>96,363</td>
+                            </tr>
+                            <tr>
+                                <td>PETS</td>
+                                <td>0.99</td>
+                                <td>0.99</td>
+                                <td>0.99</td>
+                                <td>105,107</td>
+                            </tr>
+                            <tr>
+                                <td>GROCERIES</td>
+                                <td>0.99</td>
+                                <td>0.99</td>
+                                <td>0.99</td>
+                                <td>43,809</td>
+                            </tr>
+                            <tr>
+                                <td>FOOD_AND_BEVERAGES</td>
+                                <td>1.00</td>
+                                <td>1.00</td>
+                                <td>1.00</td>
+                                <td>236</td>
+                            </tr>
+                            <tr>
+                                <td>EDUCATION</td>
+                                <td>1.00</td>
+                                <td>0.99</td>
+                                <td>1.00</td>
+                                <td>646</td>
+                            </tr>
+                            <tr>
+                                <td>RENT</td>
+                                <td>0.99</td>
+                                <td>0.99</td>
+                                <td>0.99</td>
+                                <td>1,844</td>
+                            </tr>
+                            <tr>
+                                <td>OVERDRAFT</td>
+                                <td>0.99</td>
+                                <td>0.98</td>
+                                <td>0.99</td>
+                                <td>649</td>
+                            </tr>
+                            <tr>
+                                <td>MORTGAGE</td>
+                                <td>0.99</td>
+                                <td>0.99</td>
+                                <td>0.99</td>
+                                <td>11,745</td>
+                            </tr>
+                            <tr>
+                                <th colspan="4" style="text-align:right;">Overall Accuracy:</th>
+                                <th>0.989</th>
+                            </tr>
+                        </table>
+                    
+                        <figcaption>Table: Classification Report for FastText Model.</figcaption>
+                    
                     </details>
                 
                     <!-- Transformer LLM Section -->
