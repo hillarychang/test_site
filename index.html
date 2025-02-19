@@ -305,7 +305,7 @@
                             We implemented a Transformer-based model using <code>distilbert-base-uncased</code> to leverage deep learning for text classification. 
                             This model was trained to classify transaction memos with contextual embeddings.
                         </p>
-                
+                    
                         <h4 class="process-intro">Training Configuration</h4>
                         <p class="process-intro">The model was configured with the following hyperparameters:</p>
                         <ul>
@@ -318,13 +318,24 @@
                             <li><strong>Gradient Clipping:</strong> Maximum value of 1.0</li>
                             <li><strong>Epochs:</strong> 3</li>
                         </ul>
-                
-                        <h4 class="process-intro">Confusion Matrix</h4>
-                        <figure>
-                            <img src="figure/transformer_confusion.png" alt="Transformer Model Confusion Matrix">
-                            <figcaption>Figure: Confusion Matrix for Transformer Model.</figcaption>
-                        </figure>
+                    
+                        <h4 class="process-intro">Model Performance</h4>
+                        <p class="process-intro">
+                            The Transformer model was evaluated on 9 transaction categories. After one epoch, it achieved:
+                        </p>
+                        <ul>
+                            <li><strong>Training Loss:</strong> 0.1361</li>
+                            <li><strong>Validation Loss:</strong> 0.0603</li>
+                            <li><strong>Validation Accuracy:</strong> 98.56%</li>
+                            <li><strong>Evaluation Time:</strong> 2 minutes and 43 seconds</li>
+                        </ul>
+                    
+                        <p>
+                            While the Transformer model achieved high accuracy, it exhibited higher latency compared to simpler models, 
+                            requiring longer processing times for both training and evaluation.
+                        </p>
                     </details>
+
                 </section>
             </section>
 
