@@ -200,143 +200,89 @@
                 </details>
                 </section>
 
+                <!-- Models and Results -->
                 <section id="models-results">
-                    <h4 class="feature-title"><strong>Models and Results</strong></h4>
-
-                    <!-- Logistic Regression Section -->
+                    <h3>Models and Results</h3>
+                
+                    <!-- Feature Importance -->
                     <details class="expandable-section">
-                        <summary><strong>Logistic Regression with TF-IDF Vectorization</strong></summary>
-                        <p>
-                            To classify transaction categories based on the <code>memo</code> text field, we first used a Logistic Regression model with TF-IDF vectorization. 
-                            This method converts raw text data into numerical features, allowing the model to utilize term frequency patterns for classification.
-                        </p>
+                        <summary><strong>Top Features from Models</strong></summary>
+                        <p>The following tables display the most influential features ranked by importance from different classifiers.</p>
                 
-                        <h4 class="process-intro">TF-IDF Vectorization</h4>
-                        <p class="process-intro">We employed a TF-IDF vectorizer to transform text data into a matrix of features with the following parameters:</p>
-                        <ul>
-                            <li><strong>max_features=5000:</strong> Limited to the top 5,000 most important terms.</li>
-                            <li><strong>max_df=0.95:</strong> Ignored terms appearing in more than 95% of documents.</li>
-                            <li><strong>min_df=5:</strong> Ignored terms appearing in fewer than 5 documents.</li>
-                        </ul>
-                
-                        <h4>Logistic Regression Model</h4>
-                        <p class="process-intro">For classification, we configured the Logistic Regression model with:</p>
-                        <ul>
-                            <li><strong>solver='saga':</strong> Efficient for large datasets and supports L2 regularization.</li>
-                            <li><strong>max_iter=200:</strong> Ensured convergence.</li>
-                            <li><strong>n_jobs=-1:</strong> Utilized all available CPU cores for parallel training.</li>
-                        </ul>
-                
-                        <p><strong>Accuracy:</strong> The model achieved 96.15% accuracy on the test set.</p>
-                
-                        <h4 class="process-intro">Confusion Matrix</h4>
+                        <!-- Random Forest Top Features -->
+                        <h4>Top Features (RandomForestClassifier)</h4>
                         <figure>
-                            <img src="figure/log_reg_confusion.png" alt="Logistic Regression Confusion Matrix">
-                            <figcaption>Figure: Confusion Matrix for Logistic Regression Model.</figcaption>
+                            <img src="figure/random_forest_features.png" alt="Random Forest Top Features">
+                            <figcaption>Figure: Top features ranked by importance using RandomForestClassifier.</figcaption>
+                        </figure>
+                
+                        <!-- Balanced Random Forest Top Features -->
+                        <h4>Top Features (BalancedRandomForestClassifier)</h4>
+                        <figure>
+                            <img src="figure/balanced_rf_features.png" alt="Balanced Random Forest Top Features">
+                            <figcaption>Figure: Top features ranked by importance using BalancedRandomForestClassifier.</figcaption>
+                        </figure>
+                
+                        <!-- XGBoost Top Features -->
+                        <h4>Top Features (XGBClassifier)</h4>
+                        <figure>
+                            <img src="figure/xgboost_features.png" alt="XGBoost Top Features">
+                            <figcaption>Figure: Top features ranked by importance using XGBClassifier.</figcaption>
                         </figure>
                     </details>
                 
-                    <!-- Random Forest Section -->
+                    <!-- Model Training -->
                     <details class="expandable-section">
-                        <summary><strong>Random Forest with TF-IDF Vectorization</strong></summary>
-                        <p>
-                            To improve classification performance, we implemented a Random Forest model. 
-                            While this model introduces greater complexity, its performance was slightly lower than Logistic Regression.
-                        </p>
+                        <summary><strong>Model Training</strong></summary>
+                        <p>We trained multiple classification models using different algorithms to predict delinquency risk.</p>
                 
-                        <h4 class="process-intro">TF-IDF Vectorization</h4>
-                        <p class="process-intro">We employed a TF-IDF vectorizer to transform text data into a matrix of features with the following parameters:</p>
                         <ul>
-                            <li><strong>max_features=2000:</strong> Limited the number of features to 2,000.</li>
-                            <li><strong>max_df=0.95:</strong> Ignored terms appearing in more than 95% of documents.</li>
-                            <li><strong>min_df=5:</strong> Excluded terms appearing in fewer than 5 documents.</li>
+                            <li><strong>Train-Test Split:</strong> 80% training, 20% testing.</li>
+                            <li><strong>Feature Scaling:</strong> Normalization was applied to numerical features.</li>
+                            <li><strong>Cross-Validation:</strong> We used k-fold cross-validation to ensure model robustness and prevent overfitting.</li>
+                        </ul>
+                    </details>
+                
+                    <!-- Model Evaluation -->
+                    <details class="expandable-section">
+                        <summary><strong>Model Evaluation</strong></summary>
+                        <p>We evaluated the models using key classification metrics:</p>
+                        <ul>
+                            <li><strong>Accuracy and F1-Score:</strong> Measures overall classification performance.</li>
+                            <li><strong>ROC-AUC:</strong> Evaluates the model's ability to differentiate between delinquent and non-delinquent users.</li>
+                            <li><strong>Precision and Recall:</strong> Precision measures correctly identified positive cases, while recall evaluates the proportion of actual delinquents correctly detected.</li>
+                            <li><strong>Training Time:</strong> The time required to train the model, crucial for scalability in production.</li>
+                            <li><strong>Prediction Time:</strong> The time taken to make predictions on new data.</li>
                         </ul>
                 
-                        <h4>Random Forest Model</h4>
-                        <p class="process-intro">For classification, we configured the Random Forest model with:</p>
-                        <ul>
-                            <li><strong>n_estimators=100:</strong> Used 100 decision trees.</li>
-                            <li><strong>max_depth=60:</strong> Restricted tree depth to prevent overfitting.</li>
-                            <li><strong>n_jobs=-1:</strong> Utilized all available CPU cores for parallel training.</li>
-                        </ul>
-                
-                        <p><strong>Accuracy:</strong> The Random Forest model achieved 84.28% accuracy on the test set.</p>
-                
-                        <h4 class="process-intro">Confusion Matrix</h4>
                         <figure>
-                            <img src="figure/random_forest_confusion.png" alt="Random Forest Confusion Matrix">
-                            <figcaption>Figure: Confusion Matrix for Random Forest Model.</figcaption>
+                            <img src="figure/model_evaluation.png" alt="Model Performance Comparison">
+                            <figcaption>Figure: Comparison of model performance based on accuracy, recall, precision, and F1-score.</figcaption>
                         </figure>
                     </details>
                 
-                    <!-- FastText Section -->
+                    <!-- Final Model Performance -->
                     <details class="expandable-section">
-                        <summary><strong>FastText for Text Classification</strong></summary>
-                        <p>
-                            FastText is a lightweight and efficient text classification model developed by Facebook AI. 
-                            We trained this model to categorize transaction memos with high speed and accuracy.
-                        </p>
-                    
-                        <h4 class="process-intro">Model Training</h4>
-                        <p class="process-intro">The FastText model was trained using the following hyperparameters:</p>
-                        <ul>
-                            <li><strong>Epochs:</strong> 25</li>
-                            <li><strong>Learning Rate:</strong> 1.0</li>
-                            <li><strong>Word N-Grams:</strong> 2</li>
-                            <li><strong>Embedding Dimension:</strong> 50</li>
-                            <li><strong>Bucket Size:</strong> 200,000</li>
-                        </ul>
-                    
-                        <p class="process-intro"><strong>Accuracy:</strong> The FastText model achieved an impressive 98.9% accuracy.</p>
-                    
-                        <h4 class="process-intro">Classification Report</h4>
-                        <p class="process-intro">The classification report below presents precision, recall, and F1-scores for different transaction categories.</p>
-                    
+                        <summary><strong>Final Model Performance</strong></summary>
+                        <p>The table below summarizes the performance of all trained models:</p>
+                
                         <figure>
-                            <img src="figure/fasttext_classification_report.png" alt="FastText Classification Report">
-                            <figcaption>Figure: Classification Report for FastText Model.</figcaption>
+                            <img src="figure/final_results.png" alt="Final Model Performance">
+                            <figcaption>Figure: Final results of model performance comparison.</figcaption>
                         </figure>
+                
+                        <h4>ROC-AUC Comparison</h4>
+                        <p>The following figure compares the ROC-AUC scores of all models tested, demonstrating their ability to distinguish between delinquent and non-delinquent consumers.</p>
+                        
+                        <figure>
+                            <img src="figure/auc_roc_all_models.png" alt="AUC-ROC Scores">
+                            <figcaption>Figure: Comparison of AUC-ROC scores for all models.</figcaption>
+                        </figure>
+                
                     </details>
                 
-                    <!-- Transformer LLM Section -->
-                    <details class="expandable-section">
-                        <summary><strong>LLM with Transformer Model</strong></summary>
-                        <p>
-                            We implemented a Transformer-based model using <code>distilbert-base-uncased</code> to leverage deep learning for text classification. 
-                            This model was trained to classify transaction memos with contextual embeddings.
-                        </p>
-                    
-                        <h4 class="process-intro">Training Configuration</h4>
-                        <p class="process-intro">The model was configured with the following hyperparameters:</p>
-                        <ul>
-                            <li><strong>Model Type:</strong> DistilBERT</li>
-                            <li><strong>Maximum Length:</strong> 128 tokens</li>
-                            <li><strong>Batch Size:</strong> 16</li>
-                            <li><strong>Learning Rate:</strong> 2e-5</li>
-                            <li><strong>Optimizer:</strong> AdamW</li>
-                            <li><strong>Scheduler:</strong> Linear schedule with a warmup ratio of 0.1</li>
-                            <li><strong>Gradient Clipping:</strong> Maximum value of 1.0</li>
-                            <li><strong>Epochs:</strong> 3</li>
-                        </ul>
-                    
-                        <h4 class="process-intro">Model Performance</h4>
-                        <p class="process-intro">
-                            The Transformer model was evaluated on 9 transaction categories. After one epoch, it achieved:
-                        </p>
-                        <ul>
-                            <li><strong>Training Loss:</strong> 0.1361</li>
-                            <li><strong>Validation Loss:</strong> 0.0603</li>
-                            <li><strong>Validation Accuracy:</strong> 98.56%</li>
-                            <li><strong>Evaluation Time:</strong> 2 minutes and 43 seconds</li>
-                        </ul>
-                    
-                        <p>
-                            While the Transformer model achieved high accuracy, it exhibited higher latency compared to simpler models, 
-                            requiring longer processing times for both training and evaluation.
-                        </p>
-                    </details>
-
                 </section>
+
             </section>
 
             <!-- Cash Score Section -->
