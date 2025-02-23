@@ -202,87 +202,142 @@
 
                 <!-- Models and Results -->
                 <section id="models-results">
-                    <h3>Models and Results</h3>
-                
-                    <!-- Feature Importance -->
-                    <details class="expandable-section">
-                        <summary><strong>Top Features from Models</strong></summary>
-                        <p>The following tables display the most influential features ranked by importance from different classifiers.</p>
-                
-                        <!-- Random Forest Top Features -->
-                        <h4>Top Features (RandomForestClassifier)</h4>
-                        <figure>
-                            <img src="figure/random_forest_features.png" alt="Random Forest Top Features">
-                            <figcaption>Figure: Top features ranked by importance using RandomForestClassifier.</figcaption>
-                        </figure>
-                
-                        <!-- Balanced Random Forest Top Features -->
-                        <h4>Top Features (BalancedRandomForestClassifier)</h4>
-                        <figure>
-                            <img src="figure/balanced_rf_features.png" alt="Balanced Random Forest Top Features">
-                            <figcaption>Figure: Top features ranked by importance using BalancedRandomForestClassifier.</figcaption>
-                        </figure>
-                
-                        <!-- XGBoost Top Features -->
-                        <h4>Top Features (XGBClassifier)</h4>
-                        <figure>
-                            <img src="figure/xgboost_features.png" alt="XGBoost Top Features">
-                            <figcaption>Figure: Top features ranked by importance using XGBClassifier.</figcaption>
-                        </figure>
-                    </details>
-                
-                    <!-- Model Training -->
-                    <details class="expandable-section">
-                        <summary><strong>Model Training</strong></summary>
-                        <p>We trained multiple classification models using different algorithms to predict delinquency risk.</p>
-                
-                        <ul>
-                            <li><strong>Train-Test Split:</strong> 80% training, 20% testing.</li>
-                            <li><strong>Feature Scaling:</strong> Normalization was applied to numerical features.</li>
-                            <li><strong>Cross-Validation:</strong> We used k-fold cross-validation to ensure model robustness and prevent overfitting.</li>
-                        </ul>
-                    </details>
-                
-                    <!-- Model Evaluation -->
-                    <details class="expandable-section">
-                        <summary><strong>Model Evaluation</strong></summary>
-                        <p>We evaluated the models using key classification metrics:</p>
-                        <ul>
-                            <li><strong>Accuracy and F1-Score:</strong> Measures overall classification performance.</li>
-                            <li><strong>ROC-AUC:</strong> Evaluates the model's ability to differentiate between delinquent and non-delinquent users.</li>
-                            <li><strong>Precision and Recall:</strong> Precision measures correctly identified positive cases, while recall evaluates the proportion of actual delinquents correctly detected.</li>
-                            <li><strong>Training Time:</strong> The time required to train the model, crucial for scalability in production.</li>
-                            <li><strong>Prediction Time:</strong> The time taken to make predictions on new data.</li>
-                        </ul>
-                
-                        <figure>
-                            <img src="figure/model_evaluation.png" alt="Model Performance Comparison">
-                            <figcaption>Figure: Comparison of model performance based on accuracy, recall, precision, and F1-score.</figcaption>
-                        </figure>
-                    </details>
-                
-                    <!-- Final Model Performance -->
-                    <details class="expandable-section">
-                        <summary><strong>Final Model Performance</strong></summary>
-                        <p>The table below summarizes the performance of all trained models:</p>
-                
-                        <figure>
-                            <img src="figure/final_results.png" alt="Final Model Performance">
-                            <figcaption>Figure: Final results of model performance comparison.</figcaption>
-                        </figure>
-                
-                        <h4>ROC-AUC Comparison</h4>
-                        <p>The following figure compares the ROC-AUC scores of all models tested, demonstrating their ability to distinguish between delinquent and non-delinquent consumers.</p>
-                        
-                        <figure>
-                            <img src="figure/auc_roc_all_models.png" alt="AUC-ROC Scores">
-                            <figcaption>Figure: Comparison of AUC-ROC scores for all models.</figcaption>
-                        </figure>
-                
-                    </details>
-                
-                </section>
+                    <h4 class="feature-title"><strong>Models and Results</strong></h4>
 
+                    <!-- Logistic Regression Section -->
+                    <details class="expandable-section">
+                        <summary><strong>Logistic Regression with TF-IDF Vectorization</strong></summary>
+                        <p>
+                            To classify transaction categories based on the <code>memo</code> text field, we first used a Logistic Regression model with TF-IDF vectorization. 
+                            This method converts raw text data into numerical features, allowing the model to utilize term frequency patterns for classification.
+                        </p>
+                
+                        <h4 class="process-intro">TF-IDF Vectorization</h4>
+                        <p class="process-intro">We employed a TF-IDF vectorizer to transform text data into a matrix of features with the following parameters:</p>
+                        <ul>
+                            <li><strong>max_features=5000:</strong> Limited to the top 5,000 most important terms.</li>
+                            <li><strong>max_df=0.95:</strong> Ignored terms appearing in more than 95% of documents.</li>
+                            <li><strong>min_df=5:</strong> Ignored terms appearing in fewer than 5 documents.</li>
+                        </ul>
+                
+                        <h4>Logistic Regression Model</h4>
+                        <p class="process-intro">For classification, we configured the Logistic Regression model with:</p>
+                        <ul>
+                            <li><strong>solver='saga':</strong> Efficient for large datasets and supports L2 regularization.</li>
+                            <li><strong>max_iter=200:</strong> Ensured convergence.</li>
+                            <li><strong>n_jobs=-1:</strong> Utilized all available CPU cores for parallel training.</li>
+                        </ul>
+                
+                        <p><strong>Accuracy:</strong> The model achieved 96.15% accuracy on the test set.</p>
+                
+                        <h4 class="process-intro">Confusion Matrix</h4>
+                        <figure>
+                            <img src="figure/log_reg_confusion.png" alt="Logistic Regression Confusion Matrix">
+                            <figcaption>Figure: Confusion Matrix for Logistic Regression Model.</figcaption>
+                        </figure>
+                    </details>
+                
+                    <!-- Random Forest Section -->
+                    <details class="expandable-section">
+                        <summary><strong>Random Forest with TF-IDF Vectorization</strong></summary>
+                        <p>
+                            To improve classification performance, we implemented a Random Forest model. 
+                            While this model introduces greater complexity, its performance was slightly lower than Logistic Regression.
+                        </p>
+                
+                        <h4 class="process-intro">TF-IDF Vectorization</h4>
+                        <p class="process-intro">We employed a TF-IDF vectorizer to transform text data into a matrix of features with the following parameters:</p>
+                        <ul>
+                            <li><strong>max_features=2000:</strong> Limited the number of features to 2,000.</li>
+                            <li><strong>max_df=0.95:</strong> Ignored terms appearing in more than 95% of documents.</li>
+                            <li><strong>min_df=5:</strong> Excluded terms appearing in fewer than 5 documents.</li>
+                        </ul>
+                
+                        <h4>Random Forest Model</h4>
+                        <p class="process-intro">For classification, we configured the Random Forest model with:</p>
+                        <ul>
+                            <li><strong>n_estimators=100:</strong> Used 100 decision trees.</li>
+                            <li><strong>max_depth=60:</strong> Restricted tree depth to prevent overfitting.</li>
+                            <li><strong>n_jobs=-1:</strong> Utilized all available CPU cores for parallel training.</li>
+                        </ul>
+                
+                        <p><strong>Accuracy:</strong> The Random Forest model achieved 84.28% accuracy on the test set.</p>
+                
+                        <h4 class="process-intro">Confusion Matrix</h4>
+                        <figure>
+                            <img src="figure/random_forest_confusion.png" alt="Random Forest Confusion Matrix">
+                            <figcaption>Figure: Confusion Matrix for Random Forest Model.</figcaption>
+                        </figure>
+                    </details>
+                
+                    <!-- FastText Section -->
+                    <details class="expandable-section">
+                        <summary><strong>FastText for Text Classification</strong></summary>
+                        <p>
+                            FastText is a lightweight and efficient text classification model developed by Facebook AI. 
+                            We trained this model to categorize transaction memos with high speed and accuracy.
+                        </p>
+                    
+                        <h4 class="process-intro">Model Training</h4>
+                        <p class="process-intro">The FastText model was trained using the following hyperparameters:</p>
+                        <ul>
+                            <li><strong>Epochs:</strong> 25</li>
+                            <li><strong>Learning Rate:</strong> 1.0</li>
+                            <li><strong>Word N-Grams:</strong> 2</li>
+                            <li><strong>Embedding Dimension:</strong> 50</li>
+                            <li><strong>Bucket Size:</strong> 200,000</li>
+                        </ul>
+                    
+                        <p class="process-intro"><strong>Accuracy:</strong> The FastText model achieved an impressive 98.9% accuracy.</p>
+                    
+                        <h4 class="process-intro">Classification Report</h4>
+                        <p class="process-intro">The classification report below presents precision, recall, and F1-scores for different transaction categories.</p>
+                    
+                        <figure>
+                            <img src="figure/fasttext_classification_report.png" alt="FastText Classification Report">
+                            <figcaption>Figure: Classification Report for FastText Model.</figcaption>
+                        </figure>
+                    </details>
+                
+                    <!-- Transformer LLM Section -->
+                    <details class="expandable-section">
+                        <summary><strong>LLM with Transformer Model</strong></summary>
+                        <p>
+                            We implemented a Transformer-based model using <code>distilbert-base-uncased</code> to leverage deep learning for text classification. 
+                            This model was trained to classify transaction memos with contextual embeddings.
+                        </p>
+                    
+                        <h4 class="process-intro">Training Configuration</h4>
+                        <p class="process-intro">The model was configured with the following hyperparameters:</p>
+                        <ul>
+                            <li><strong>Model Type:</strong> DistilBERT</li>
+                            <li><strong>Maximum Length:</strong> 128 tokens</li>
+                            <li><strong>Batch Size:</strong> 16</li>
+                            <li><strong>Learning Rate:</strong> 2e-5</li>
+                            <li><strong>Optimizer:</strong> AdamW</li>
+                            <li><strong>Scheduler:</strong> Linear schedule with a warmup ratio of 0.1</li>
+                            <li><strong>Gradient Clipping:</strong> Maximum value of 1.0</li>
+                            <li><strong>Epochs:</strong> 3</li>
+                        </ul>
+                    
+                        <h4 class="process-intro">Model Performance</h4>
+                        <p class="process-intro">
+                            The Transformer model was evaluated on 9 transaction categories. After one epoch, it achieved:
+                        </p>
+                        <ul>
+                            <li><strong>Training Loss:</strong> 0.1361</li>
+                            <li><strong>Validation Loss:</strong> 0.0603</li>
+                            <li><strong>Validation Accuracy:</strong> 98.56%</li>
+                            <li><strong>Evaluation Time:</strong> 2 minutes and 43 seconds</li>
+                        </ul>
+                    
+                        <p>
+                            While the Transformer model achieved high accuracy, it exhibited higher latency compared to simpler models, 
+                            requiring longer processing times for both training and evaluation.
+                        </p>
+                    </details>
+
+                </section>
             </section>
 
             <!-- Cash Score Section -->
@@ -375,157 +430,64 @@
                 </section>
             
                 <!-- Models and Results -->
+                <!-- Models and Results -->
                 <section id="models-results">
                     <h4 class="feature-title"><strong>Models and Results</strong></h4>
-            
+                    
                     <!-- Model Training -->
                     <details class="expandable-section">
                         <summary>Model Training</summary>
                         
-                        <p>We trained multiple machine learning models to predict delinquency risk. These models range from simple interpretable baselines to advanced gradient boosting and neural networks, each chosen for its ability to capture different aspects of financial behavior.</p>
-                    
+                        <p>We trained multiple machine learning models to predict delinquency risk. These models range from simple interpretable baselines to advanced gradient boosting and ensemble methods, each chosen for its ability to capture different aspects of financial behavior.</p>
+                        
                         <ul>
                             <li><strong>Logistic Regression:</strong> A simple, interpretable baseline model.</li>
                             <li><strong>Random Forest:</strong> Captures non-linear financial relationships.</li>
                             <li><strong>XGBoost:</strong> Optimized for structured financial data.</li>
-                            <li><strong>Neural Networks:</strong> Captures complex spending patterns.</li>
                             <li><strong>LightGBM:</strong> Efficient with categorical features and handling imbalanced data.</li>
                             <li><strong>Balanced RF:</strong> Handles class imbalance by weighting classes or resampling.</li>
                             <li><strong>CatBoost:</strong> Handles categorical features automatically and is robust to overfitting.</li>
                             <li><strong>HistGB:</strong> A histogram-based gradient boosting model.</li>
                             <li><strong>RUSBoost:</strong> Combines Random Under-Sampling with boosting to address class imbalance while maintaining predictive performance.</li>
                         </ul>
-                    
-                        <p>Additionally, we applied best practices to optimize our model training process:</p>
-                        <ul>
-                            <li><strong>Train-Test Split:</strong> 80% training, 20% testing.</li>
-                            <li><strong>Feature Scaling:</strong> Normalization was applied to numerical features.</li>
-                            <li><strong>Cross-Validation:</strong> We used k-fold cross-validation to ensure model robustness and prevent overfitting.</li>
-                        </ul>
                     </details>
 
                     <!-- Model Evaluation -->
                     <details class="expandable-section">
                         <summary>Model Evaluation</summary>
-                    
-                        <p>We evaluated model performance using a combination of classification metrics, computation efficiency, and techniques to address class imbalance.</p>
-                    
-                        <h4 class="process-intro">Key Evaluation Metrics</h4>
+                        <p>We evaluated model performance using key classification metrics:</p>
                         <ul>
                             <li><strong>Accuracy and F1-Score:</strong> Measures overall classification performance.</li>
                             <li><strong>ROC-AUC:</strong> Evaluates the model's ability to differentiate between delinquent and non-delinquent users.</li>
-                            <li><strong>Precision and Recall:</strong> Precision measures correctly identified positive cases, while recall evaluates the proportion of actual delinquents correctly detected.</li>
-                            <li><strong>Training Time:</strong> The time required to train the model, crucial for scalability in production.</li>
-                            <li><strong>Prediction Time:</strong> The time taken to make predictions on new data.</li>
-                            <li><strong>Feature Importance:</strong> Highlights the most predictive variables that contribute to delinquency classification.</li>
+                            <li><strong>Precision and Recall:</strong> Measures positive case identification accuracy.</li>
                         </ul>
-                    
-                        <h4>Addressing Class Imbalance</h4>
-                        <p>Since delinquents make up only ~8.4% of the dataset, we applied techniques to balance the dataset and improve model robustness.</p>
-                        <ul>
-                            <li><strong>SMOTE & SMOTEENN:</strong> Synthetic Minority Over-sampling Technique (SMOTE) and SMOTE-Edited Nearest Neighbors (SMOTEENN) were used to generate synthetic samples and refine class distributions.</li>
-                            <li><strong>Feature Normalization:</strong> Standardization of key numerical features ensured that different scales did not affect model performance.</li>
-                        </ul>
-                    
                         <figure>
-                            <img src="figure/model_evaluation.png" alt="Model Evaluation Metrics">
-                            <figcaption>Figure: Model performance evaluation using key metrics.</figcaption>
+                            <img src="figures/auc_roc_comparison.png" alt="AUC-ROC Curve Comparison">
+                            <figcaption>Figure: ROC-AUC curve comparison for all models.</figcaption>
                         </figure>
                     </details>
-
-            
-                    <!-- Feature Performance -->
+                    
+                    <!-- Feature Importance for Different Models -->
                     <details class="expandable-section">
-                        <summary>Feature Performance</summary>
-                    
-                        <p>We analyzed the most influential features for predicting delinquency using an <strong>XGBoost Classifier (XGBClassifier)</strong>. Overdraft frequency and spending patterns were among the top indicators.</p>
-                    
-                        <h4 class="process-intro">Key Predictors of Delinquency</h4>
-                        <ul>
-                            <li><strong>Account Type - Savings:</strong> Indicates whether a consumer has a savings account.</li>
-                            <li><strong>Account Fees:</strong> Total sum of all account-related fees.</li>
-                            <li><strong>Credit Score:</strong> Credit score of a consumer, which serves as a baseline feature.</li>
-                            <li><strong>Overdraft Median:</strong> Median amount of overdraft transactions.</li>
-                            <li><strong>Account Fees Median:</strong> Median amount of account-related fees.</li>
-                            <li><strong>BNPL Std:</strong> Standard deviation of Buy-Now-Pay-Later (BNPL) transactions.</li>
-                            <li><strong>Overdraft Count:</strong> Total number of overdraft transactions.</li>
-                            <li><strong>Investment Income Median:</strong> Median amount of investment income.</li>
-                            <li><strong>Investment Income Count:</strong> Number of investment-related transactions.</li>
-                            <li><strong>Banking Catch All Std:</strong> Standard deviation of a consumer’s transactions within this category.</li>
-                        </ul>
-                    
-                        <h4 class="process-intro">Top Features from XGBClassifier</h4>
-                        <table>
-                            <tr>
-                                <th>Feature</th>
-                                <th>Importance</th>
-                                <th>Correlation</th>
-                            </tr>
-                            <tr>
-                                <td>Account Type - Savings</td>
-                                <td>0.044091</td>
-                                <td>-0.099071</td>
-                            </tr>
-                            <tr>
-                                <td>Account Fees Count</td>
-                                <td>0.037083</td>
-                                <td>0.020680</td>
-                            </tr>
-                            <tr>
-                                <td>Credit Score</td>
-                                <td>0.030284</td>
-                                <td>-0.249976</td>
-                            </tr>
-                            <tr>
-                                <td>Overdraft Median</td>
-                                <td>0.026024</td>
-                                <td>0.000407</td>
-                            </tr>
-                            <tr>
-                                <td>Account Fees Median</td>
-                                <td>0.021387</td>
-                                <td>0.001497</td>
-                            </tr>
-                            <tr>
-                                <td>BNPL Std</td>
-                                <td>0.021323</td>
-                                <td>0.034083</td>
-                            </tr>
-                            <tr>
-                                <td>Overdraft Count</td>
-                                <td>0.021319</td>
-                                <td>0.066101</td>
-                            </tr>
-                            <tr>
-                                <td>Investment Income Median</td>
-                                <td>0.018767</td>
-                                <td>0.004675</td>
-                            </tr>
-                            <tr>
-                                <td>Investment Income Count</td>
-                                <td>0.017630</td>
-                                <td>-0.026354</td>
-                            </tr>
-                            <tr>
-                                <td>Banking Catch All Std</td>
-                                <td>0.014733</td>
-                                <td>-0.010585</td>
-                            </tr>
-                        </table>
-                    
+                        <summary>Feature Importance</summary>
+                        <p>Top predictive features for different models:</p>
                         <figure>
-                            <img src="figure/feature_importance.png" alt="Feature Importance">
-                            <figcaption>Figure: Top predictive features ranked by importance.</figcaption>
+                            <img src="figures/feature_importance_rf.png" alt="Random Forest Feature Importance">
+                            <figcaption>Figure: Feature importance from Random Forest.</figcaption>
+                        </figure>
+                        <figure>
+                            <img src="figures/feature_importance_xgb.png" alt="XGBoost Feature Importance">
+                            <figcaption>Figure: Feature importance from XGBoost.</figcaption>
+                        </figure>
+                        <figure>
+                            <img src="figures/feature_importance_lightgbm.png" alt="LightGBM Feature Importance">
+                            <figcaption>Figure: Feature importance from LightGBM.</figcaption>
                         </figure>
                     </details>
-
+                    
                     <!-- Model Performance -->
                     <details class="expandable-section">
                         <summary>Model Performance</summary>
-                    
-                        <p>We compared various models based on accuracy, F1-score, and inference time. The <strong>Histogram-Based Gradient Boosting (HistGB)</strong> model achieved the highest ROC-AUC score, while <strong>Balanced Random Forest (Balanced RF)</strong> provided the best accuracy. Logistic Regression was the fastest to train but had lower performance in comparison.</p>
-                    
-                        <h4 class="process-intro">Model Performance Metrics</h4>
                         <table>
                             <tr>
                                 <th>Model</th>
@@ -536,130 +498,91 @@
                                 <th>F1-Score</th>
                             </tr>
                             <tr>
-                                <td><strong>HistGB</strong></td>
-                                <td><strong>0.8424</strong></td>
-                                <td>0.9135</td>
-                                <td>0.8898</td>
-                                <td>0.9135</td>
-                                <td>0.8995</td>
-                            </tr>
-                            <tr>
-                                <td>XGBoost</td>
-                                <td>0.8393</td>
-                                <td>0.9101</td>
-                                <td>0.8890</td>
-                                <td>0.9101</td>
-                                <td>0.8981</td>
-                            </tr>
-                            <tr>
                                 <td>LightGBM</td>
-                                <td>0.8289</td>
-                                <td>0.9139</td>
-                                <td>0.8894</td>
-                                <td>0.9139</td>
-                                <td>0.8994</td>
-                            </tr>
-                            <tr>
-                                <td>CatBoost</td>
-                                <td>0.8232</td>
-                                <td>0.9158</td>
-                                <td>0.8879</td>
-                                <td>0.9158</td>
-                                <td>0.8989</td>
-                            </tr>
-                            <tr>
-                                <td>RUSBoost</td>
-                                <td>0.8059</td>
-                                <td>0.8263</td>
-                                <td>0.9050</td>
-                                <td>0.8263</td>
-                                <td>0.8579</td>
-                            </tr>
-                            <tr>
-                                <td>Random Forest</td>
-                                <td>0.7943</td>
-                                <td>0.9155</td>
-                                <td>0.8853</td>
-                                <td>0.9155</td>
-                                <td>0.8973</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Balanced RF</strong></td>
-                                <td>0.7916</td>
-                                <td><strong>0.9197</strong></td>
-                                <td>0.8926</td>
-                                <td><strong>0.9197</strong></td>
-                                <td><strong>0.9022</strong></td>
-                            </tr>
-                            <tr>
-                                <td>Logistic Regression</td>
-                                <td>0.7611</td>
-                                <td>0.7594</td>
-                                <td><strong>0.9067</strong></td>
-                                <td>0.7594</td>
-                                <td>0.8140</td>
-                            </tr>
-                        </table>
-                    
-                        <h4 class="process-intro">Time-Based Model Performance</h4>
-                        <table>
-                            <tr>
-                                <th>Model</th>
-                                <th>Training Time (s)</th>
-                                <th>Prediction Time (s)</th>
+                                <td>0.832</td>
+                                <td>0.917</td>
+                                <td>0.90</td>
+                                <td>0.92</td>
+                                <td>0.90</td>
                             </tr>
                             <tr>
                                 <td>HistGB</td>
-                                <td>8.76</td>
-                                <td>TODO</td>
-                            </tr>
-                            <tr>
-                                <td>XGBoost</td>
-                                <td>5.68</td>
-                                <td>TODO</td>
-                            </tr>
-                            <tr>
-                                <td>LightGBM</td>
-                                <td>4.40</td>
-                                <td>TODO</td>
+                                <td>0.823</td>
+                                <td>0.913</td>
+                                <td>0.89</td>
+                                <td>0.91</td>
+                                <td>0.90</td>
                             </tr>
                             <tr>
                                 <td>CatBoost</td>
-                                <td>42.61</td>
-                                <td>TODO</td>
+                                <td>0.821</td>
+                                <td>0.917</td>
+                                <td>0.89</td>
+                                <td>0.92</td>
+                                <td>0.90</td>
+                            </tr>
+                            <tr>
+                                <td>XGBoost</td>
+                                <td>0.818</td>
+                                <td>0.914</td>
+                                <td>0.89</td>
+                                <td>0.91</td>
+                                <td>0.90</td>
                             </tr>
                             <tr>
                                 <td>RUSBoost</td>
-                                <td>23.32</td>
-                                <td>TODO</td>
+                                <td>0.802</td>
+                                <td>0.829</td>
+                                <td>0.90</td>
+                                <td>0.83</td>
+                                <td>0.86</td>
                             </tr>
                             <tr>
                                 <td>Random Forest</td>
-                                <td>22.37</td>
-                                <td>TODO</td>
+                                <td>0.800</td>
+                                <td>0.915</td>
+                                <td>0.89</td>
+                                <td>0.92</td>
+                                <td>0.90</td>
                             </tr>
                             <tr>
                                 <td>Balanced RF</td>
-                                <td>27.23</td>
-                                <td>TODO</td>
+                                <td>0.800</td>
+                                <td>0.914</td>
+                                <td>0.89</td>
+                                <td>0.91</td>
+                                <td>0.90</td>
                             </tr>
                             <tr>
-                                <td><strong>Logistic Regression</strong></td>
-                                <td><strong>2.35</strong></td>
-                                <td>TODO</td>
+                                <td>Logistic Regression</td>
+                                <td>0.777</td>
+                                <td>0.743</td>
+                                <td>0.91</td>
+                                <td>0.74</td>
+                                <td>0.80</td>
                             </tr>
                         </table>
-                    
-                        <h4 class="process-intro">ROC-AUC Comparison</h4>
-                        <p>The following figure compares the ROC-AUC scores of all models tested, demonstrating their ability to distinguish between delinquent and non-delinquent consumers.</p>
-                        <figure>
-                            <img src="figure/auc_roc_all_models.png" alt="AUC-ROC Scores">
-                            <figcaption>Figure: Comparison of AUC-ROC scores for all models.</figcaption>
-                        </figure>
-                    
-                    </details>
                         
+                        <h4>Confusion Matrices</h4>
+                        <figure>
+                            <img src="figures/conf_matrix_rf.png" alt="Random Forest Confusion Matrix">
+                            <figcaption>Figure: Random Forest Confusion Matrix.</figcaption>
+                        </figure>
+                        <figure>
+                            <img src="figures/conf_matrix_xgb.png" alt="XGBoost Confusion Matrix">
+                            <figcaption>Figure: XGBoost Confusion Matrix.</figcaption>
+                        </figure>
+                        <figure>
+                            <img src="figures/conf_matrix_lightgbm.png" alt="LightGBM Confusion Matrix">
+                            <figcaption>Figure: LightGBM Confusion Matrix.</figcaption>
+                        </figure>
+                        <figure>
+                            <img src="figures/conf_matrix_catboost.png" alt="CatBoost Confusion Matrix">
+                            <figcaption>Figure: CatBoost Confusion Matrix.</figcaption>
+                        </figure>
+                    </details>
                 </section>
+
             </section>
 
             <section id="discussion">
