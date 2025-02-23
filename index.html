@@ -430,10 +430,8 @@
                 </section>
             
                 <!-- Models and Results -->
-                <!-- Models and Results -->
                 <section id="models-results">
-                    <h4 class="feature-title"><strong>Models and Results</strong></h4>
-                    
+                    <h4 class="feature-title"><strong>Models and Results</strong></h4>                    
                     <!-- Model Training -->
                     <details class="expandable-section">
                         <summary>Model Training</summary>
@@ -460,11 +458,9 @@
                             <li><strong>Accuracy and F1-Score:</strong> Measures overall classification performance.</li>
                             <li><strong>ROC-AUC:</strong> Evaluates the model's ability to differentiate between delinquent and non-delinquent users.</li>
                             <li><strong>Precision and Recall:</strong> Measures positive case identification accuracy.</li>
+                            <li><strong>Training Time:</strong> Measures how long each model takes to train.</li>
+                            <li><strong>Prediction Time:</strong> Measures the time taken to make predictions on new data.</li>
                         </ul>
-                        <figure>
-                            <img src="figures/auc_roc_comparison.png" alt="AUC-ROC Curve Comparison">
-                            <figcaption>Figure: ROC-AUC curve comparison for all models.</figcaption>
-                        </figure>
                     </details>
                     
                     <!-- Feature Importance for Different Models -->
@@ -485,84 +481,7 @@
                         </figure>
                     </details>
                     
-                    <!-- Model Performance -->
-                    <details class="expandable-section">
-                        <summary>Model Performance</summary>
-                        <table>
-                            <tr>
-                                <th>Model</th>
-                                <th>ROC-AUC</th>
-                                <th>Accuracy</th>
-                                <th>Precision</th>
-                                <th>Recall</th>
-                                <th>F1-Score</th>
-                            </tr>
-                            <tr>
-                                <td>LightGBM</td>
-                                <td>0.832</td>
-                                <td>0.917</td>
-                                <td>0.90</td>
-                                <td>0.92</td>
-                                <td>0.90</td>
-                            </tr>
-                            <tr>
-                                <td>HistGB</td>
-                                <td>0.823</td>
-                                <td>0.913</td>
-                                <td>0.89</td>
-                                <td>0.91</td>
-                                <td>0.90</td>
-                            </tr>
-                            <tr>
-                                <td>CatBoost</td>
-                                <td>0.821</td>
-                                <td>0.917</td>
-                                <td>0.89</td>
-                                <td>0.92</td>
-                                <td>0.90</td>
-                            </tr>
-                            <tr>
-                                <td>XGBoost</td>
-                                <td>0.818</td>
-                                <td>0.914</td>
-                                <td>0.89</td>
-                                <td>0.91</td>
-                                <td>0.90</td>
-                            </tr>
-                            <tr>
-                                <td>RUSBoost</td>
-                                <td>0.802</td>
-                                <td>0.829</td>
-                                <td>0.90</td>
-                                <td>0.83</td>
-                                <td>0.86</td>
-                            </tr>
-                            <tr>
-                                <td>Random Forest</td>
-                                <td>0.800</td>
-                                <td>0.915</td>
-                                <td>0.89</td>
-                                <td>0.92</td>
-                                <td>0.90</td>
-                            </tr>
-                            <tr>
-                                <td>Balanced RF</td>
-                                <td>0.800</td>
-                                <td>0.914</td>
-                                <td>0.89</td>
-                                <td>0.91</td>
-                                <td>0.90</td>
-                            </tr>
-                            <tr>
-                                <td>Logistic Regression</td>
-                                <td>0.777</td>
-                                <td>0.743</td>
-                                <td>0.91</td>
-                                <td>0.74</td>
-                                <td>0.80</td>
-                            </tr>
-                        </table>
-                        
+                    <details class="expandable-section">                        
                         <h4>Confusion Matrices</h4>
                         <figure>
                             <img src="figures/conf_matrix_rf.png" alt="Random Forest Confusion Matrix">
@@ -580,6 +499,105 @@
                             <img src="figures/conf_matrix_catboost.png" alt="CatBoost Confusion Matrix">
                             <figcaption>Figure: CatBoost Confusion Matrix.</figcaption>
                         </figure>
+
+                        <summary>Model Performance</summary>
+                        <table>
+                            <tr>
+                                <th>Model</th>
+                                <th>ROC-AUC</th>
+                                <th>Accuracy</th>
+                                <th>Precision</th>
+                                <th>Recall</th>
+                                <th>F1-Score</th>
+                                <th>Train Time (s)</th>
+                                <th>Predict Time (s)</th>
+                            </tr>
+                            <tr>
+                                <td>LightGBM</td>
+                                <td>0.832</td>
+                                <td>0.914</td>
+                                <td>0.889</td>
+                                <td>0.914</td>
+                                <td>0.899</td>
+                                <td>2.208</td>
+                                <td>0.000018</td>
+                            </tr>
+                            <tr>
+                                <td>HistGB</td>
+                                <td>0.823</td>
+                                <td>0.913</td>
+                                <td>0.892</td>
+                                <td>0.913</td>
+                                <td>0.901</td>
+                                <td>3.196</td>
+                                <td>0.000021</td>
+                            </tr>
+                            <tr>
+                                <td>CatBoost</td>
+                                <td>0.821</td>
+                                <td>0.917</td>
+                                <td>0.893</td>
+                                <td>0.917</td>
+                                <td>0.902</td>
+                                <td>14.511</td>
+                                <td>0.000005</td>
+                            </tr>
+                            <tr>
+                                <td>XGBoost</td>
+                                <td>0.818</td>
+                                <td>0.914</td>
+                                <td>0.893</td>
+                                <td>0.914</td>
+                                <td>0.902</td>
+                                <td>1.635</td>
+                                <td>0.000006</td>
+                            </tr>
+                            <tr>
+                                <td>RUSBoost</td>
+                                <td>0.802</td>
+                                <td>0.829</td>
+                                <td>0.903</td>
+                                <td>0.829</td>
+                                <td>0.859</td>
+                                <td>6.954</td>
+                                <td>0.000012</td>
+                            </tr>
+                            <tr>
+                                <td>Balanced RF</td>
+                                <td>0.800</td>
+                                <td>0.914</td>
+                                <td>0.890</td>
+                                <td>0.914</td>
+                                <td>0.900</td>
+                                <td>13.670</td>
+                                <td>0.000034</td>
+                            </tr>
+                            <tr>
+                                <td>Random Forest</td>
+                                <td>0.800</td>
+                                <td>0.915</td>
+                                <td>0.893</td>
+                                <td>0.915</td>
+                                <td>0.902</td>
+                                <td>14.364</td>
+                                <td>0.000088</td>
+                            </tr>
+                            <tr>
+                                <td>Logistic Regression</td>
+                                <td>0.777</td>
+                                <td>0.743</td>
+                                <td>0.911</td>
+                                <td>0.743</td>
+                                <td>0.803</td>
+                                <td>0.348</td>
+                                <td>0.000003</td>
+                            </tr>
+                        </table>
+                        <figure>
+                            <img src="figures/auc_roc_all_models.png" alt="AUC-ROC Scores">
+                            <figcaption>Figure: ROC-AUC curve comparison for all models.</figcaption>
+                        </figure>
+                        
                     </details>
                 </section>
 
