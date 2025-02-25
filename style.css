@@ -256,3 +256,20 @@ figcaption {
     font-weight: bold;
     margin-top: 1.5rem;
 }
+
+.confusion-matrix-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Two columns */
+    gap: 20px; /* Adjust spacing between figures */
+    justify-content: center;
+    align-items: center;
+}
+
+.confusion-matrix-grid figure {
+    text-align: center;
+}
+
+.confusion-matrix-grid .full-width {
+    grid-column: span 2; /* Makes the last figure take the full row */
+    justify-self: center;
+}
