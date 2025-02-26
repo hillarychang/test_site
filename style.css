@@ -273,3 +273,17 @@ figcaption {
     grid-column: span 2; /* Makes the last figure take the full row */
     justify-self: center;
 }
+
+
+.center-table {
+    margin: auto; /* Centers the table */
+    text-align: center; /* Centers the text inside the table */
+    border-collapse: collapse; /* Optional: Makes borders cleaner */
+    width: 80%; /* Adjust the width as needed */
+}
+
+.center-table th, .center-table td {
+    padding: 10px; /* Adds spacing inside cells */
+    text-align: center; /* Centers text inside cells */
+    border: 1px solid #ddd; /* Optional: Adds border */
+}
