@@ -403,30 +403,39 @@
             
                     <!-- Feature Engineering -->
                     <details class="expandable-section">
-                        <summary>Feature Engineering</summary>
-                        
-                        <p>We engineered multiple features relevant to the prediction of delinquency, focusing on balance trends, transaction behaviors, and account types. These features help in assessing financial stability and predicting default risk.</p>
+                    <summary>Feature Engineering</summary>
                     
-                        <ul>
-                            <li><strong>Balance Features:</strong> Negative balance ratio, balance trends, payday effects.</li>
-                            <li><strong>Transaction-Based Features:</strong> Credit vs. debit transaction volume, category-based spending breakdown.</li>
-                            <li><strong>Temporal Features:</strong> Spending frequency over time, accounting for longevity effects.</li>
-                            <li><strong>Account Types:</strong> Features based on the types of accounts a consumer has.</li>
-                            <li><strong>Overdraft Frequency:</strong> The number of times a consumer overdrafted in the past 6 months.</li>
-                            <li><strong>Spending Volatility:</strong> Standard deviation of monthly expenditures.</li>
-                            <li><strong>Recurring Payments:</strong> Identifying transactions like rent, utilities, and subscriptions.</li>
-                        </ul>
-                    
-                        <figure>
-                            <img src="figure/spending_balance_ratio.png" alt="Spending Balance Ratio">
-                            <figcaption>Figure: Spending balance ratio feature created to measure how much consumers spend relative to their balance. This helps assess financial stability and risk of delinquency.</figcaption>
-                        </figure>
-                    
-                        <figure>
-                            <img src="figure/standardized_credit_balance.png" alt="Standardized Credit and Balance">
-                            <figcaption>Figure: Feature engineering step where credit and balance were standardized to allow for easier model interpretability and comparisons across different financial profiles.</figcaption>
-                        </figure>
-                    
+                    <p>We engineered multiple features relevant to the prediction of delinquency, focusing on balance trends, transaction behaviors, and account types. These features help in assessing financial stability and predicting default risk.</p>
+                
+                    <ul>
+                        <li><strong>Balance Features:</strong> Negative balance ratio, balance trends, payday effects.</li>
+                        <li><strong>Transaction-Based Features:</strong> Credit vs. debit transaction volume, category-based spending breakdown.</li>
+                        <li><strong>Temporal Features:</strong> Spending frequency over time, accounting for longevity effects.</li>
+                        <li><strong>Account Types:</strong> Features based on the types of accounts a consumer has.</li>
+                        <li><strong>Overdraft Frequency:</strong> The number of times a consumer overdrafted in the past 6 months.</li>
+                        <li><strong>Spending Volatility:</strong> Standard deviation of monthly expenditures.</li>
+                        <li><strong>Recurring Payments:</strong> Identifying transactions like rent, utilities, and subscriptions.</li>
+                    </ul>
+                
+                    <figure>
+                        <img src="figure/spending_balance_ratio.png" alt="Spending Balance Ratio">
+                        <figcaption>Figure: Spending balance ratio feature created to measure how much consumers spend relative to their balance. This helps assess financial stability and risk of delinquency.</figcaption>
+                    </figure>
+                
+                    <figure>
+                        <img src="figure/standardized_credit_balance.png" alt="Standardized Credit and Balance">
+                        <figcaption>Figure: Feature engineering step where credit and balance were standardized to allow for easier model interpretability and comparisons across different financial profiles.</figcaption>
+                    </figure>
+                
+                    <figure>
+                        <img src="figure/shap_values2.png" alt="Feature Importance using Shap Values">
+                        <figcaption>Figure: Feature Importance using Shap Values.</figcaption>
+                    </figure>
+                
+                    <figure>
+                        <img src="figure/feature_plot_credit_score.png" alt="Delinquency Percentage vs Credit Score">
+                        <figcaption>Figure: Delinquency Percentage vs Credit Score.</figcaption>
+                    </figure>
                     </details>
                 </section>
             
@@ -461,6 +470,12 @@
                             <li><strong>Precision and Recall:</strong> Measures positive case identification accuracy.</li>
                             <li><strong>Training Time:</strong> Measures how long each model takes to train.</li>
                             <li><strong>Prediction Time:</strong> Measures the time taken to make predictions on new data.</li>
+                        </ul>
+
+                        <p>To mitigate the class imbalance (delinquents only 8.4% of dataset), we used:</p>
+                        <ul>
+                            <li><strong>SMOTE & SMOTEENN:</strong> Oversampling techniques.</li>
+                            <li><strong>Feature Normalization:</strong> Standardization of key variables.</li>
                         </ul>
                     </details>
                     
@@ -509,13 +524,12 @@
                                 <img src="figure/conf_matrix_catboost.png" alt="CatBoost Confusion Matrix">
                                 <figcaption>Figure: CatBoost Confusion Matrix.</figcaption>
                             </figure>
-                            <!-- The last one spans full width to be centered in the last row -->
-                            <figure class="full-width">
+                            <figure>
                                 <img src="figure/conf_matrix_rusboost.png" alt="RUSBoost Confusion Matrix">
                                 <figcaption>Figure: RUSBoost Confusion Matrix.</figcaption>
                             </figure>
                         </div>
-
+                
                         <summary>Model Performance</summary>
                         <table class="center-table">
                             <tr>
@@ -548,73 +562,36 @@
                                 <td>3.196</td>
                                 <td>0.000021</td>
                             </tr>
-                            <tr>
-                                <td>CatBoost</td>
-                                <td>0.821</td>
-                                <td>0.917</td>
-                                <td>0.893</td>
-                                <td>0.917</td>
-                                <td>0.902</td>
-                                <td>14.511</td>
-                                <td>0.000005</td>
-                            </tr>
-                            <tr>
-                                <td>XGBoost</td>
-                                <td>0.818</td>
-                                <td>0.914</td>
-                                <td>0.893</td>
-                                <td>0.914</td>
-                                <td>0.902</td>
-                                <td>1.635</td>
-                                <td>0.000006</td>
-                            </tr>
-                            <tr>
-                                <td>RUSBoost</td>
-                                <td>0.802</td>
-                                <td>0.829</td>
-                                <td>0.903</td>
-                                <td>0.829</td>
-                                <td>0.859</td>
-                                <td>6.954</td>
-                                <td>0.000012</td>
-                            </tr>
-                            <tr>
-                                <td>Balanced RF</td>
-                                <td>0.800</td>
-                                <td>0.914</td>
-                                <td>0.890</td>
-                                <td>0.914</td>
-                                <td>0.900</td>
-                                <td>13.670</td>
-                                <td>0.000034</td>
-                            </tr>
-                            <tr>
-                                <td>Random Forest</td>
-                                <td>0.800</td>
-                                <td>0.915</td>
-                                <td>0.893</td>
-                                <td>0.915</td>
-                                <td>0.902</td>
-                                <td>14.364</td>
-                                <td>0.000088</td>
-                            </tr>
-                            <tr>
-                                <td>Logistic Regression</td>
-                                <td>0.777</td>
-                                <td>0.743</td>
-                                <td>0.911</td>
-                                <td>0.743</td>
-                                <td>0.803</td>
-                                <td>0.348</td>
-                                <td>0.000003</td>
-                            </tr>
                         </table>
 
+                        
+                    </details>
+
+                    <details class="expandable-section">
+                        <summary>Conclusion</summary>
+                        
+                        <p>Our analysis highlights the effectiveness of different machine learning models in predicting delinquency risk. Among them, LightGBM demonstrated the highest ROC-AUC score, making it the most effective model for our use case.</p>
+                        
+                        <ul>
+                            <li><strong>LightGBM:</strong> Highest ROC-AUC score, best overall performance.</li>
+                            <li><strong>Reason Score:</strong> Features that most contributed to risk classification.</li>
+                            <li><strong>Cash Score:</strong> Distribution of calculated scores for financial assessment.</li>
+                        </ul>
+                        
                         <figure>
                             <img src="figure/auc_roc_all_models.png" alt="AUC-ROC Scores">
                             <figcaption>Figure: ROC-AUC curve comparison for all models.</figcaption>
                         </figure>
                         
+                        <figure>
+                            <img src="figure/top_reasons.jpeg" alt="Distribution of Common Reasons">
+                            <figcaption>Figure: Distribution of Common Reasons.</figcaption>
+                        </figure>
+                        
+                        <figure>
+                            <img src="figure/cash_score_dist2.jpeg" alt="Distribution of Cash Scores">
+                            <figcaption>Figure: Distribution of Cash Scores.</figcaption>
+                        </figure>
                     </details>
                 </section>
 
