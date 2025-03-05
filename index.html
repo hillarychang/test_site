@@ -628,32 +628,35 @@
                             </tr>
                         </table>
                     </details>
-
+                    
                     <details class="expandable-section">
                         <summary>Conclusion</summary>
-                        
+                    
                         <p>Our analysis highlights the effectiveness of different machine learning models in predicting delinquency risk. Among them, LightGBM demonstrated the highest ROC-AUC score, making it the most effective model for our use case.</p>
-                        
+                    
                         <ul>
                             <li><strong>LightGBM:</strong> Highest ROC-AUC score, best overall performance.</li>
                             <li><strong>Reason Score:</strong> Features that most contributed to risk classification.</li>
                             <li><strong>Cash Score:</strong> Distribution of calculated scores for financial assessment.</li>
                         </ul>
-                        
+                    
                         <figure>
                             <img src="figure/auc_roc_all_models.png" alt="AUC-ROC Scores">
                             <figcaption>Figure: ROC-AUC curve comparison for all models.</figcaption>
                         </figure>
-                        
-                        <figure>
-                            <img src="figure/top_reasons.png" alt="Distribution of Common Reasons">
-                            <figcaption>Figure: Distribution of Common Reasons.</figcaption>
-                        </figure>
-                        
-                        <figure>
-                            <img src="figure/cash_score_dist2.png" alt="Distribution of Cash Scores">
-                            <figcaption>Figure: Distribution of Cash Scores.</figcaption>
-                        </figure>
+                    
+                        <!-- Container for side-by-side plots -->
+                        <div style="display: flex; justify-content: space-between; gap: 10px;">
+                            <figure style="flex: 1; text-align: center;">
+                                <img src="figure/top_reasons.png" alt="Distribution of Common Reasons" style="max-width: 100%; height: auto;">
+                                <figcaption>Figure: Distribution of Common Reasons.</figcaption>
+                            </figure>
+                    
+                            <figure style="flex: 1; text-align: center;">
+                                <img src="figure/cash_score_dist2.png" alt="Distribution of Cash Scores" style="max-width: 100%; height: auto;">
+                                <figcaption>Figure: Distribution of Cash Scores.</figcaption>
+                            </figure>
+                        </div>
                     </details>
                 </section>
 
