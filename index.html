@@ -403,39 +403,42 @@
             
                     <!-- Feature Engineering -->
                     <details class="expandable-section">
-                    <summary>Feature Engineering</summary>
+                        <summary>Feature Engineering</summary>
                     
-                    <p>We engineered multiple features relevant to the prediction of delinquency, focusing on balance trends, transaction behaviors, and account types. These features help in assessing financial stability and predicting default risk.</p>
-                
-                    <ul>
-                        <li><strong>Balance Features:</strong> Negative balance ratio, balance trends, payday effects.</li>
-                        <li><strong>Transaction-Based Features:</strong> Credit vs. debit transaction volume, category-based spending breakdown.</li>
-                        <li><strong>Temporal Features:</strong> Spending frequency over time, accounting for longevity effects.</li>
-                        <li><strong>Account Types:</strong> Features based on the types of accounts a consumer has.</li>
-                        <li><strong>Overdraft Frequency:</strong> The number of times a consumer overdrafted in the past 6 months.</li>
-                        <li><strong>Spending Volatility:</strong> Standard deviation of monthly expenditures.</li>
-                        <li><strong>Recurring Payments:</strong> Identifying transactions like rent, utilities, and subscriptions.</li>
-                    </ul>
-                
-                    <figure>
-                        <img src="figure/spending_balance_ratio.png" alt="Spending Balance Ratio">
-                        <figcaption>Figure: Spending balance ratio feature created to measure how much consumers spend relative to their balance. This helps assess financial stability and risk of delinquency.</figcaption>
-                    </figure>
-                
-                    <figure>
-                        <img src="figure/standardized_credit_balance.png" alt="Standardized Credit and Balance">
-                        <figcaption>Figure: Feature engineering step where credit and balance were standardized to allow for easier model interpretability and comparisons across different financial profiles.</figcaption>
-                    </figure>
-                
-                    <figure>
-                        <img src="figure/shap_values2.png" alt="Feature Importance using Shap Values">
-                        <figcaption>Figure: Feature Importance using Shap Values.</figcaption>
-                    </figure>
-                
-                    <figure>
-                        <img src="figure/feature_plot_credit_score.png" alt="Delinquency Percentage vs Credit Score">
-                        <figcaption>Figure: Delinquency Percentage vs Credit Score.</figcaption>
-                    </figure>
+                        <p>We engineered multiple features relevant to the prediction of delinquency, focusing on balance trends, transaction behaviors, and account types. These features help in assessing financial stability and predicting default risk.</p>
+                    
+                        <ul>
+                            <li><strong>Balance Features:</strong> Negative balance ratio, balance trends, payday effects.</li>
+                            <li><strong>Transaction-Based Features:</strong> Credit vs. debit transaction volume, category-based spending breakdown.</li>
+                            <li><strong>Temporal Features:</strong> Spending frequency over time, accounting for longevity effects.</li>
+                            <li><strong>Account Types:</strong> Features based on the types of accounts a consumer has.</li>
+                            <li><strong>Overdraft Frequency:</strong> The number of times a consumer overdrafted in the past 6 months.</li>
+                            <li><strong>Spending Volatility:</strong> Standard deviation of monthly expenditures.</li>
+                            <li><strong>Recurring Payments:</strong> Identifying transactions like rent, utilities, and subscriptions.</li>
+                        </ul>
+                    
+                        <!-- Container for side-by-side images -->
+                        <div style="display: flex; justify-content: space-between; gap: 10px;">
+                            <figure style="flex: 1; text-align: center;">
+                                <img src="figure/spending_balance_ratio.png" alt="Spending Balance Ratio" style="max-width: 100%; height: auto;">
+                                <figcaption>Figure: Spending balance ratio feature created to measure how much consumers spend relative to their balance.</figcaption>
+                            </figure>
+                    
+                            <figure style="flex: 1; text-align: center;">
+                                <img src="figure/standardized_credit_balance.png" alt="Standardized Credit and Balance" style="max-width: 100%; height: auto;">
+                                <figcaption>Figure: Credit and balance were standardized for easier interpretability and comparison.</figcaption>
+                            </figure>
+                        </div>
+                    
+                        <figure>
+                            <img src="figure/shap_values2.png" alt="Feature Importance using Shap Values">
+                            <figcaption>Figure: Feature Importance using Shap Values.</figcaption>
+                        </figure>
+                    
+                        <figure>
+                            <img src="figure/feature_plot_credit_score.png" alt="Delinquency Percentage vs Credit Score">
+                            <figcaption>Figure: Delinquency Percentage vs Credit Score.</figcaption>
+                        </figure>
                     </details>
                 </section>
             
